@@ -1,0 +1,35 @@
+{
+  "id": "dev.xinghan.gdufe",
+  "name": "广财课表自动导入",
+  "version": "2.0.2",
+  "author": "Xialuo",
+  "description": "登录广财教务系统后自动导入课表，并按广州或佛山（三水）校区设置 12 节时间",
+  "entryUrl": "http://jwxt.gdufe.edu.cn/jsxsd/",
+  "protocolVersion": 3,
+  "capabilities": [
+    "course_import",
+    "web_ui",
+    "native_dialog"
+  ],
+  "activation": {
+    "type": "dialog",
+    "label": "更新信息",
+    "url": "http://jwxt.gdufe.edu.cn/jsxsd/",
+    "dialog": {
+      "title": "插件更新信息 · v2.0.2",
+      "message": "• 广财教务登录令牌按一次性会话处理，已移除“直接更新课表”。\n• 每次更新请打开插件，在学校网页完成登录；登录成功后仍会自动解析并提交课表。\n• 保留广州与佛山（三水）校区识别及 12 节时间设置。",
+      "actions": [
+        {
+          "id": "open",
+          "label": "打开插件",
+          "command": "open_web"
+        },
+        {
+          "id": "close",
+          "label": "关闭",
+          "command": "dismiss"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"id":"dev.xinghan.qiangzhi","name":"强智教务课表导入","version":"1.1.4","author":"Xialuo","description":"兼容 HTTP/HTTPS 与统一认证；同一课程可保留多个上课时间及各自地点，不写入无关备注","entryUrl":"about:blank","protocolVersion":3,"backgroundSyncInterval":24,"capabilities":["course_import","web_ui"],"activation":{"type":"web","label":"导入课表"}}

@@ -1,0 +1,58 @@
+{
+  "$schema": "../schemas/market.schema.json",
+  "schemaVersion": 1,
+  "updatedAt": "2026-08-28T00:00:00Z",
+  "plugins": [
+    {
+      "id": "dev.xinghan.qiangzhi",
+      "name": "强智教务课表导入",
+      "author": "Xialuo",
+      "description": "兼容 HTTP/HTTPS 与统一认证；同一课程可保留多个上课时间及各自地点，不写入无关备注",
+      "latestVersion": "1.1.4",
+      "protocolVersion": 3,
+      "minAppVersion": "1.1",
+      "minAppVersionCode": 2,
+      "capabilities": [
+        "course_import",
+        "web_ui"
+      ],
+      "official": true,
+      "tags": [
+        "强智教务",
+        "通用导入"
+      ],
+      "packagePath": "packages/dev.xinghan.qiangzhi/1.1.4/qiangzhi-import-1.1.4.xhp",
+      "downloadUrl": "https://raw.githubusercontent.com/xialuo0511/ClassSchedule-XHP-Market/main/packages/dev.xinghan.qiangzhi/1.1.4/qiangzhi-import-1.1.4.xhp",
+      "sourceUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.qiangzhi",
+      "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.qiangzhi/README.md",
+      "sha256": "8e33be14b0d7ba5fe735fd4d29c15d9e9e93aceb3673f36aee2d5584292ca5af",
+      "updatedAt": "2026-08-27"
+    },
+    {
+      "id": "dev.xinghan.gdufe",
+      "name": "广财课表自动导入",
+      "author": "Xialuo",
+      "description": "登录广财教务系统后自动导入课表，并按广州或佛山（三水）校区设置 12 节时间",
+      "latestVersion": "2.0.2",
+      "protocolVersion": 3,
+      "minAppVersion": "1.1",
+      "minAppVersionCode": 2,
+      "capabilities": [
+        "course_import",
+        "web_ui",
+        "native_dialog"
+      ],
+      "official": true,
+      "tags": [
+        "广东财经大学",
+        "强智教务"
+      ],
+      "packagePath": "packages/dev.xinghan.gdufe/2.0.2/gdufe-course-import-2.0.2.xhp",
+      "downloadUrl": "https://raw.githubusercontent.com/xialuo0511/ClassSchedule-XHP-Market/main/packages/dev.xinghan.gdufe/2.0.2/gdufe-course-import-2.0.2.xhp",
+      "sourceUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.gdufe",
+      "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/blob/main/plugins/dev.xinghan.gdufe/CHANGELOG.md",
+      "sha256": "8a36f257f36fb26fcacbe961f2f7955102fe867d71e6e0ab7968c698e100b17e",
+      "updatedAt": "2026-08-27"
+    }
+  ]
+}
