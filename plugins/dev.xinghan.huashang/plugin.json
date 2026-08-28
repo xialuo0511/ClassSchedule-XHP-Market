@@ -1,0 +1,17 @@
+{
+  "id": "dev.xinghan.huashang",
+  "name": "广州华商学院课表导入",
+  "version": "1.0.0",
+  "author": "Xialuo",
+  "description": "适配广州华商学院强智教务，抑制重复课程，并按广州或肇庆校区写入 11 节上课时间",
+  "entryUrl": "https://jwxt.gzhs.edu.cn/jsxsd/",
+  "protocolVersion": 3,
+  "capabilities": [
+    "course_import",
+    "web_ui"
+  ],
+  "activation": {
+    "type": "web",
+    "label": "导入课表"
+  }
+}

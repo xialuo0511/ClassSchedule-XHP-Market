@@ -1,7 +1,7 @@
 {
   "$schema": "../schemas/market.schema.json",
   "schemaVersion": 1,
-  "updatedAt": "2026-08-28T00:00:00Z",
+  "updatedAt": "2026-08-28T08:32:52Z",
   "plugins": [
     {
       "id": "dev.xinghan.qiangzhi",
@@ -53,6 +53,33 @@
       "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/blob/main/plugins/dev.xinghan.gdufe/CHANGELOG.md",
       "sha256": "8a36f257f36fb26fcacbe961f2f7955102fe867d71e6e0ab7968c698e100b17e",
       "updatedAt": "2026-08-27"
+    },
+    {
+      "id": "dev.xinghan.huashang",
+      "name": "广州华商学院课表导入",
+      "author": "Xialuo",
+      "description": "适配广州华商学院强智教务，抑制重复课程，并按广州或肇庆校区写入 11 节上课时间",
+      "latestVersion": "1.0.0",
+      "protocolVersion": 3,
+      "minAppVersion": "1.1",
+      "minAppVersionCode": 2,
+      "capabilities": [
+        "course_import",
+        "web_ui"
+      ],
+      "official": false,
+      "tags": [
+        "广州华商学院",
+        "强智教务",
+        "双校区",
+        "测试版"
+      ],
+      "packagePath": "packages/dev.xinghan.huashang/1.0.0/huashang-course-import-1.0.0.xhp",
+      "downloadUrl": "https://raw.githubusercontent.com/xialuo0511/ClassSchedule-XHP-Market/main/packages/dev.xinghan.huashang/1.0.0/huashang-course-import-1.0.0.xhp",
+      "sourceUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.huashang",
+      "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/blob/main/plugins/dev.xinghan.huashang/CHANGELOG.md",
+      "sha256": "d1abddebf8539160ae7e0d96f47ce0cccaea75bdef7488c8b6109d130205c0a8",
+      "updatedAt": "2026-08-28"
     }
   ]
 }
