@@ -46,6 +46,11 @@ def read_json(path: Path) -> dict:
         raise ValidationError(f"Cannot read JSON {path.relative_to(ROOT)}: {exc}") from exc
 
 
+def normalized_utf8(data: bytes) -> str:
+    """Compare packaged text semantically across Windows/Linux checkouts."""
+    return data.decode("utf-8-sig").replace("\r\n", "\n").replace("\r", "\n")
+
+
 def validate_manifest(manifest: dict, directory_id: str) -> None:
     plugin_id = manifest.get("id")
     version = manifest.get("version")
@@ -86,8 +91,14 @@ def validate_package(entry: dict, source_dir: Path) -> None:
             embedded_manifest = json.loads(archive.read("plugin.json").decode("utf-8-sig"))
             source_manifest_bytes = (source_dir / "plugin.json").read_bytes()
             source_script_bytes = (source_dir / "main.js").read_bytes()
-            require(archive.read("plugin.json") == source_manifest_bytes, f"Packaged plugin.json differs from source for {entry['id']}")
-            require(archive.read("main.js") == source_script_bytes, f"Packaged main.js differs from source for {entry['id']}")
+            require(
+                normalized_utf8(archive.read("plugin.json")) == normalized_utf8(source_manifest_bytes),
+                f"Packaged plugin.json differs from source for {entry['id']}",
+            )
+            require(
+                normalized_utf8(archive.read("main.js")) == normalized_utf8(source_script_bytes),
+                f"Packaged main.js differs from source for {entry['id']}",
+            )
     except (OSError, zipfile.BadZipFile, UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise ValidationError(f"Invalid package {entry['packagePath']}: {exc}") from exc
 

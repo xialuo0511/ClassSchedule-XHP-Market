@@ -8,6 +8,7 @@
   var LOGIN_ENTRY_URL = HUASHANG_ORIGIN + '/jsxsd/';
   var TIMETABLE_URL = HUASHANG_ORIGIN + '/jsxsd/xskb/xskb_list.do';
   var CALENDAR_URL = HUASHANG_ORIGIN + '/jsxsd/jxzl/jxzl_query';
+  var PLUGIN_VERSION = '1.0.2';
   var MAX_SECTION_COUNT = 13;
   var RUN_KEY = '__xhp_huashang_import_running__';
   var SUBMITTED_KEY = '__xhp_huashang_import_submitted__';
@@ -21,6 +22,22 @@
     '#DDEBFF', '#DDF4EE', '#F3E6FA', '#FFF0D8',
     '#FFE4E1', '#E7E5FF', '#DFF3F8', '#F1E8D8'
   ];
+
+  // The Huashang timetable groups physical rows differently after section 8.
+  // These labels are only a fallback: the detailed "周次(节次)" field remains
+  // authoritative whenever it contains an explicit bracketed section list.
+  var HUASHANG_ROW_SECTIONS = {
+    '第一二节': [1, 2],
+    '第三四节': [3, 4],
+    '第五六节': [5, 6],
+    '第七八节': [7, 8],
+    '第九十十一节': [9, 10, 11],
+    '第十二十三节': [12, 13]
+  };
+
+  var KNOWN_SEMESTER_STARTS = {
+    '2026-2027-1': '2026-08-31'
+  };
 
   var SECTION_TIMES = {
     guangzhou: [
@@ -58,7 +75,8 @@
   var CAMPUS_RULES = {
     guangzhou: [
       /广州校区|增城校区|增城/i,
-      /励志楼|厚德楼|创新楼|启智楼|博学楼|创科楼|院士楼|弘美楼/i
+      /励志楼|厚德楼|创新楼|启智楼|博学楼|创科楼|院士楼|弘美楼/i,
+      /华科中心|华科A\d|华商会议展览中心|会展-/i
     ],
     zhaoqing: [
       /肇庆校区|四会校区|四会/i,
@@ -171,13 +189,29 @@
       var currentSemester = getCurrentSemesterInfo();
       var calendarResult = readAcademicCalendar(parsed.semester.code);
       var semesterMeta = calendarResult.meta || fallbackSemesterMeta(parsed, currentSemester);
-      var campus = detectCampus(parsed.courses);
+      var selectedTimeModeCampus = detectCampusFromTimeMode(document);
+      var campus = selectedTimeModeCampus
+        ? {
+            campus: selectedTimeModeCampus,
+            scores: { zhaoqing: 0, guangzhou: 0, unknown: 0 },
+            examples: { zhaoqing: [], guangzhou: [], unknown: [] },
+            mixed: false,
+            tied: false
+          }
+        : detectCampus(parsed.courses);
       if (campus.campus === 'unknown' || campus.mixed || campus.tied) {
         window[RUN_KEY] = false;
         renderCampusChooser(parsed, currentSemester, semesterMeta, calendarResult, campus);
         return;
       }
-      submitImport(parsed, currentSemester, semesterMeta, calendarResult, campus.campus, 'auto');
+      submitImport(
+        parsed,
+        currentSemester,
+        semesterMeta,
+        calendarResult,
+        campus.campus,
+        selectedTimeModeCampus ? 'time-mode' : 'location'
+      );
     } catch (error) {
       window[RUN_KEY] = false;
       log('import failed: ' + (error && error.message ? error.message : String(error)));
@@ -375,7 +409,7 @@
     var table = findTimetableTable(doc);
     var snapshot = {
       format: 'huashang-xhp-debug-v1',
-      pluginVersion: '1.0.1',
+      pluginVersion: PLUGIN_VERSION,
       capturedAt: new Date().toISOString(),
       page: safePageIdentity(),
       semester: detectSemester(doc),
@@ -530,7 +564,7 @@
         .sort();
       if (dates.length < 2) throw new Error('校历页面未包含完整日期');
 
-      var startDate = dates[0];
+      var startDate = KNOWN_SEMESTER_STARTS[semesterCode] || dates[0];
       var endDate = dates[dates.length - 1];
       var totalWeeks = Math.max(1, Math.ceil((daysBetween(startDate, endDate) + 1) / 7));
       return {
@@ -594,6 +628,19 @@
       mixed: scores.zhaoqing > 0 && scores.guangzhou > 0,
       tied: scores.zhaoqing > 0 && scores.zhaoqing === scores.guangzhou
     };
+  }
+
+  function detectCampusFromTimeMode(doc) {
+    if (!doc || !doc.querySelector) return '';
+    var select = doc.querySelector('select#kbjcmsid, select[name="kbjcmsid"]');
+    if (!select) return '';
+    var selected = select.options && select.selectedIndex >= 0
+      ? select.options[select.selectedIndex]
+      : null;
+    var text = cleanText(selected ? selected.textContent : '');
+    if (/广州|增城/.test(text)) return 'guangzhou';
+    if (/肇庆|四会/.test(text)) return 'zhaoqing';
+    return '';
   }
 
   function classifyLocation(location) {
@@ -740,6 +787,8 @@
     var headerText = uniqueGridCells((gridRow || []).slice(0, firstDayColumn))
       .map(function (reference) { return cleanText(reference.cell.textContent); })
       .join(' ');
+    var mapped = parseHuashangSectionHeader(headerText);
+    if (mapped.length) return mapped;
     var explicit = headerText.match(/第?\s*(\d{1,2})(?:\s*[-—~至]\s*(\d{1,2}))?\s*节/);
     if (explicit) {
       var start = parseInt(explicit[1], 10);
@@ -754,6 +803,15 @@
     largeIndex = largeIndex || ordinal;
     var pairStart = (largeIndex - 1) * 2 + 1;
     return [pairStart, pairStart + 1].filter(validSectionIndex);
+  }
+
+  function parseHuashangSectionHeader(text) {
+    var normalized = cleanText(text).replace(/\s+/g, '').replace(/[:：]/g, '');
+    var keys = Object.keys(HUASHANG_ROW_SECTIONS);
+    for (var index = 0; index < keys.length; index += 1) {
+      if (normalized.indexOf(keys[index]) >= 0) return HUASHANG_ROW_SECTIONS[keys[index]].slice();
+    }
+    return [];
   }
 
   function uniqueGridCells(references) {
@@ -819,7 +877,7 @@
         return /\d/.test(line) && (/周/.test(line) || /单|双/.test(line));
       });
     }
-    sectionText = firstMatching(lines, looksLikeExplicitSectionLine);
+    sectionText = preferredSectionText(weekText, lines);
 
     var weeks = parseWeeks(weekText);
     var sections = parseSections(sectionText);
@@ -851,6 +909,12 @@
       endSection: sections[sections.length - 1],
       weeks: weeks
     };
+  }
+
+  function preferredSectionText(weekText, lines) {
+    var combined = normalizeSymbols(weekText || '');
+    if (/[\[【][^\]】]*\d{1,2}[^\]】]*节[^\]】]*[\]】]/.test(combined)) return weekText;
+    return firstMatching(lines || [], looksLikeExplicitSectionLine);
   }
 
   function parseWeeks(text) {
@@ -1179,6 +1243,8 @@
   }
 
   function guessSemesterStartDate(code) {
+    var known = KNOWN_SEMESTER_STARTS[String(code || '').trim()];
+    if (known) return known;
     var match = String(code || '').match(/(20\d{2})\s*[-—]\s*(20\d{2})\s*[-—]\s*([12])/);
     var date;
     if (match) {
@@ -1400,8 +1466,11 @@
       SECTION_TIMES: SECTION_TIMES,
       classifyLocation: classifyLocation,
       detectCampus: detectCampus,
+      detectCampusFromTimeMode: detectCampusFromTimeMode,
       parseWeeks: parseWeeks,
       parseSections: parseSections,
+      preferredSectionText: preferredSectionText,
+      parseHuashangSectionHeader: parseHuashangSectionHeader,
       looksLikeExplicitSectionLine: looksLikeExplicitSectionLine,
       weeksToRule: weeksToRule,
       normalizeSemesterName: normalizeSemesterName,

@@ -7,7 +7,7 @@ $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 
 if ([string]::IsNullOrWhiteSpace($OutputPath)) {
-    $OutputPath = Join-Path $PSScriptRoot 'dist\huashang-course-import-1.0.1.xhp'
+    $OutputPath = Join-Path $PSScriptRoot 'dist\huashang-course-import-1.0.2.xhp'
 }
 
 $manifestPath = Join-Path $PSScriptRoot 'plugin.json'

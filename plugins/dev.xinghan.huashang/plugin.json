@@ -1,7 +1,7 @@
 {
   "id": "dev.xinghan.huashang",
   "name": "广州华商学院课表导入",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Xialuo",
   "description": "适配广州华商学院强智教务，支持四节连排、13 节课表及广州或肇庆校区时间",
   "entryUrl": "https://jwxt.gzhs.edu.cn/jsxsd/",

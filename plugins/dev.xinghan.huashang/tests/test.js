@@ -64,6 +64,8 @@ assert.deepStrictEqual(plain(api.SECTION_TIMES.zhaoqing[7]), { sectionIndex: 8, 
 
 assert.strictEqual(api.classifyLocation('广州校区 励志楼 A301'), 'guangzhou');
 assert.strictEqual(api.classifyLocation('厚德楼 C214'), 'guangzhou');
+assert.strictEqual(api.classifyLocation('华科A5-218'), 'guangzhou');
+assert.strictEqual(api.classifyLocation('会展-311(数智经贸综合实验室)'), 'guangzhou');
 assert.strictEqual(api.classifyLocation('肇庆校区 16号楼 212'), 'zhaoqing');
 assert.strictEqual(api.classifyLocation('四会校区 7号楼 209'), 'zhaoqing');
 assert.strictEqual(api.classifyLocation('线上课堂'), 'unknown');
@@ -82,12 +84,29 @@ assert.deepStrictEqual(plain(api.parseWeeks('1-18周')), Array.from({ length: 18
 assert.deepStrictEqual(plain(api.parseWeeks('1-17周(单)')), [1, 3, 5, 7, 9, 11, 13, 15, 17]);
 assert.deepStrictEqual(plain(api.parseSections('[01-02]节')), [1, 2]);
 assert.deepStrictEqual(plain(api.parseSections('[01-02-03-04节]')), [1, 2, 3, 4]);
+assert.deepStrictEqual(plain(api.parseSections('1-9(周)[01-02-03-04节]')), [1, 2, 3, 4]);
+assert.deepStrictEqual(plain(api.parseSections('3,5,7,9,11(周)[09-10-11-12节]')), [9, 10, 11, 12]);
 assert.deepStrictEqual(plain(api.parseSections('第10-11节')), [10, 11]);
 assert.deepStrictEqual(plain(api.parseSections('第12-13节')), [12, 13]);
 assert.deepStrictEqual(plain(api.parseSections('第13-14节')), []);
 assert.strictEqual(api.looksLikeExplicitSectionLine('[01-02-03-04节]'), true);
 assert.strictEqual(api.looksLikeExplicitSectionLine('[05-06节]'), true);
+assert.strictEqual(api.preferredSectionText('1-9(周)[01-02-03-04节]', ['药理学实验']), '1-9(周)[01-02-03-04节]');
+assert.deepStrictEqual(plain(api.parseHuashangSectionHeader('第一二节')), [1, 2]);
+assert.deepStrictEqual(plain(api.parseHuashangSectionHeader('第九十十一节')), [9, 10, 11]);
+assert.deepStrictEqual(plain(api.parseHuashangSectionHeader('第十二十三节')), [12, 13]);
 assert.strictEqual(api.guessSemesterStartDate('2026-2027-1'), '2026-08-31');
+
+function timeModeDocument(label) {
+  return {
+    querySelector: () => ({
+      selectedIndex: 0,
+      options: [{ textContent: label }]
+    })
+  };
+}
+assert.strictEqual(api.detectCampusFromTimeMode(timeModeDocument('广州校区时间模式')), 'guangzhou');
+assert.strictEqual(api.detectCampusFromTimeMode(timeModeDocument('肇庆校区时间模式')), 'zhaoqing');
 
 const grouped = api.groupCourses([
   { name: '大学英语', teacher: '陈老师', location: '励志楼 A201', dayOfWeek: 1, startSection: 1, endSection: 2, weeks: [1] },
