@@ -45,10 +45,10 @@ assert(api, 'test API was not exposed');
 
 assert.strictEqual(api.LOGIN_ENTRY_URL, 'https://jwxt.gzhs.edu.cn/jsxsd/');
 assert.strictEqual(api.TIMETABLE_URL, 'https://jwxt.gzhs.edu.cn/jsxsd/xskb/xskb_list.do');
-assert.strictEqual(api.MAX_SECTION_COUNT, 11);
+assert.strictEqual(api.MAX_SECTION_COUNT, 13);
 
 for (const campus of ['guangzhou', 'zhaoqing']) {
-  assert.strictEqual(api.SECTION_TIMES[campus].length, 11);
+  assert.strictEqual(api.SECTION_TIMES[campus].length, 13);
   api.SECTION_TIMES[campus].forEach((item, index) => {
     assert.strictEqual(item.sectionIndex, index + 1);
     assert(/^\d{2}:\d{2}$/.test(item.startTime));
@@ -58,6 +58,7 @@ for (const campus of ['guangzhou', 'zhaoqing']) {
 }
 assert.deepStrictEqual(plain(api.SECTION_TIMES.guangzhou[0]), { sectionIndex: 1, startTime: '08:30', endTime: '09:15' });
 assert.deepStrictEqual(plain(api.SECTION_TIMES.guangzhou[10]), { sectionIndex: 11, startTime: '20:35', endTime: '21:20' });
+assert.deepStrictEqual(plain(api.SECTION_TIMES.guangzhou[12]), { sectionIndex: 13, startTime: '22:25', endTime: '23:10' });
 assert.deepStrictEqual(plain(api.SECTION_TIMES.zhaoqing[0]), { sectionIndex: 1, startTime: '08:40', endTime: '09:25' });
 assert.deepStrictEqual(plain(api.SECTION_TIMES.zhaoqing[7]), { sectionIndex: 8, startTime: '16:35', endTime: '17:20' });
 
@@ -80,8 +81,13 @@ assert.strictEqual(tiedCampus.tied, true);
 assert.deepStrictEqual(plain(api.parseWeeks('1-18周')), Array.from({ length: 18 }, (_, index) => index + 1));
 assert.deepStrictEqual(plain(api.parseWeeks('1-17周(单)')), [1, 3, 5, 7, 9, 11, 13, 15, 17]);
 assert.deepStrictEqual(plain(api.parseSections('[01-02]节')), [1, 2]);
+assert.deepStrictEqual(plain(api.parseSections('[01-02-03-04节]')), [1, 2, 3, 4]);
 assert.deepStrictEqual(plain(api.parseSections('第10-11节')), [10, 11]);
-assert.deepStrictEqual(plain(api.parseSections('第11-12节')), []);
+assert.deepStrictEqual(plain(api.parseSections('第12-13节')), [12, 13]);
+assert.deepStrictEqual(plain(api.parseSections('第13-14节')), []);
+assert.strictEqual(api.looksLikeExplicitSectionLine('[01-02-03-04节]'), true);
+assert.strictEqual(api.looksLikeExplicitSectionLine('[05-06节]'), true);
+assert.strictEqual(api.guessSemesterStartDate('2026-2027-1'), '2026-08-31');
 
 const grouped = api.groupCourses([
   { name: '大学英语', teacher: '陈老师', location: '励志楼 A201', dayOfWeek: 1, startSection: 1, endSection: 2, weeks: [1] },
@@ -113,21 +119,21 @@ assert.strictEqual(tableGrid[2][1].origin, false, 'rowspan continuation must not
 
 const parsed = {
   maxWeek: 18,
-  maxSection: 11,
+  maxSection: 13,
   courses: grouped
 };
 assert.strictEqual(api.shouldCreateSemester(
   { startDate: '2026-08-31', totalWeeks: 18, sectionCount: 12, currentWeek: 1 },
   { name: '2026-2027-1', startDate: '2026-08-31', totalWeeks: 18 },
   parsed
-), true, 'a previous 12-section semester must be replaced with the Huashang 11-section model');
+), true, 'a previous 12-section semester must be replaced with the Huashang 13-section model');
 const payload = api.buildImportPayload(
   parsed,
   { startDate: null, totalWeeks: 0, sectionCount: 0, currentWeek: 0 },
   { name: '2026-2027-1', startDate: '2026-08-31', totalWeeks: 18 },
   { campus: 'zhaoqing' }
 );
-assert.strictEqual(payload.semester.sectionCount, 11);
-assert.strictEqual(payload.sectionTimes.length, 11);
+assert.strictEqual(payload.semester.sectionCount, 13);
+assert.strictEqual(payload.sectionTimes.length, 13);
 
 console.log('All Huashang plugin unit tests passed.');

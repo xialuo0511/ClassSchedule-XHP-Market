@@ -7,9 +7,10 @@
 - 登录后自动进入“学期理论课表”并解析课程。
 - 通过表格逻辑网格处理 `rowspan/colspan`，同一跨行课程只解析一次。
 - 同一课程、同一时间和地点的分周记录会合并周次，避免出现 180 门重复课程。
-- 节次严格限制为 1–11；异常超过 80 条课程块或 50 门课程时停止提交。
+- 兼容 `[01-02-03-04节]` 这类四节连排写法，节次严格限制为 1–13。
+- 异常超过 80 条课程块或 50 门课程时停止提交。
 - 尝试根据地点识别广州/肇庆校区；无法可靠识别、出现并列或跨校区时，要求用户手动选择。
-- 按识别或选择的校区提交对应的完整 11 节时间。
+- 按识别或选择的校区提交对应的完整 13 节时间。
 
 ## 两校区时间来源
 
@@ -22,12 +23,12 @@ https://xsc.gzhs.edu.cn/info/1046/7660.htm
 ## 构建与测试
 
 ```powershell
-node --check ./plugins/dev.xinghan.huashang/main.js
-node ./plugins/dev.xinghan.huashang/tests/test.js
-./plugins/dev.xinghan.huashang/build.ps1
+node --check ./examples/plugin-huashang/main.js
+node ./examples/plugin-huashang/tests/test.js
+./examples/plugin-huashang/build.ps1
 ```
 
-构建产物位于 `dist/huashang-course-import-1.0.0.xhp`。
+构建产物位于 `dist/huashang-course-import-1.0.1.xhp`。
 
 ## 当前验证边界
 

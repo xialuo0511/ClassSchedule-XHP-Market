@@ -10,7 +10,7 @@
 |---|---:|---|---|
 | 强智教务课表导入 | 1.1.4 | Xialuo | [下载 XHP](packages/dev.xinghan.qiangzhi/1.1.4/qiangzhi-import-1.1.4.xhp) |
 | 广财课表自动导入 | 2.0.2 | Xialuo | [下载 XHP](packages/dev.xinghan.gdufe/2.0.2/gdufe-course-import-2.0.2.xhp) |
-| 广州华商学院课表导入（测试版） | 1.0.0 | Xialuo | [下载 XHP](packages/dev.xinghan.huashang/1.0.0/huashang-course-import-1.0.0.xhp) |
+| 广州华商学院课表导入（测试版） | 1.0.1 | Xialuo | [下载 XHP](packages/dev.xinghan.huashang/1.0.1/huashang-course-import-1.0.1.xhp) |
 
 市场索引：[`market/index.json`](market/index.json)
 App 更新索引：[`app/update.json`](app/update.json)

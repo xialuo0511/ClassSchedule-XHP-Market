@@ -8,12 +8,14 @@
   var LOGIN_ENTRY_URL = HUASHANG_ORIGIN + '/jsxsd/';
   var TIMETABLE_URL = HUASHANG_ORIGIN + '/jsxsd/xskb/xskb_list.do';
   var CALENDAR_URL = HUASHANG_ORIGIN + '/jsxsd/jxzl/jxzl_query';
-  var MAX_SECTION_COUNT = 11;
+  var MAX_SECTION_COUNT = 13;
   var RUN_KEY = '__xhp_huashang_import_running__';
   var SUBMITTED_KEY = '__xhp_huashang_import_submitted__';
   var REDIRECT_KEY = '__xhp_huashang_redirect_count__';
   var STATUS_ID = 'xhp-huashang-status';
   var CAMPUS_DIALOG_ID = 'xhp-huashang-campus-dialog';
+  var DEBUG_BUTTON_ID = 'xhp-huashang-debug-button';
+  var DEBUG_DIALOG_ID = 'xhp-huashang-debug-dialog';
   var TEST_MODE = !!window.__XHP_HUASHANG_TEST_MODE__;
   var COLOR_PALETTE = [
     '#DDEBFF', '#DDF4EE', '#F3E6FA', '#FFF0D8',
@@ -32,7 +34,9 @@
       section(8, '16:50', '17:35'),
       section(9, '18:45', '19:30'),
       section(10, '19:40', '20:25'),
-      section(11, '20:35', '21:20')
+      section(11, '20:35', '21:20'),
+      section(12, '21:30', '22:15'),
+      section(13, '22:25', '23:10')
     ],
     zhaoqing: [
       section(1, '08:40', '09:25'),
@@ -45,7 +49,9 @@
       section(8, '16:35', '17:20'),
       section(9, '18:45', '19:30'),
       section(10, '19:40', '20:25'),
-      section(11, '20:35', '21:20')
+      section(11, '20:35', '21:20'),
+      section(12, '21:30', '22:15'),
+      section(13, '22:25', '23:10')
     ]
   };
 
@@ -113,6 +119,7 @@
     }
 
     clearRedirectCount();
+    installDebugExporter();
     renderStatus('已识别课表，正在自动解析……', false);
     window.setTimeout(function () { runImport(); }, 120);
   }
@@ -219,7 +226,7 @@
         '<div class="hs-campus-card" role="dialog" aria-modal="true" aria-labelledby="hs-campus-title">' +
           '<div class="hs-campus-kicker">广州华商学院 · 双校区作息</div>' +
           '<h2 id="hs-campus-title">选择你的上课校区</h2>' +
-          '<p>课表地点未能可靠区分校区。选择后会自动写入对应的 11 节上课时间，不会修改课程地点。</p>' +
+          '<p>课表地点未能可靠区分校区。选择后会自动写入对应的 13 节上课时间，不会修改课程地点。</p>' +
           '<label class="hs-campus-option">' +
             '<input type="radio" name="hs-campus" value="guangzhou">' +
             '<span><b>广州校区</b><small>第 1 节 08:30 开始 · 下午第 5 节 14:10</small></span>' +
@@ -280,6 +287,192 @@
       '#' + CAMPUS_DIALOG_ID + ' button{height:44px!important;border-radius:12px!important;font-size:13px!important;font-weight:700!important;cursor:pointer!important}' +
       '#' + CAMPUS_DIALOG_ID + ' .hs-campus-secondary{border:1px solid #D0D5DD!important;background:#FFF!important;color:#475467!important}' +
       '#' + CAMPUS_DIALOG_ID + ' .hs-campus-primary{border:0!important;background:#3569D4!important;color:#FFF!important;box-shadow:0 8px 20px rgba(53,105,212,.22)!important}';
+  }
+
+  function installDebugExporter() {
+    if (document.getElementById(DEBUG_BUTTON_ID)) return;
+    var button = document.createElement('button');
+    button.id = DEBUG_BUTTON_ID;
+    button.type = 'button';
+    button.textContent = '导出调试数据';
+    button.setAttribute('style', [
+      'all:initial',
+      'position:fixed',
+      'left:12px',
+      'bottom:12px',
+      'z-index:2147483646',
+      'height:40px',
+      'padding:0 14px',
+      'border:1px solid rgba(53,105,212,.24)',
+      'border-radius:12px',
+      'background:#fff',
+      'box-shadow:0 10px 28px rgba(15,23,42,.2)',
+      'color:#2457b8',
+      'font:700 12px/40px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif',
+      'cursor:pointer'
+    ].join('!important;') + '!important');
+    button.addEventListener('click', renderDebugDialog);
+    (document.documentElement || document.body).appendChild(button);
+  }
+
+  function renderDebugDialog() {
+    removeDebugDialog();
+    var root = document.createElement('div');
+    root.id = DEBUG_DIALOG_ID;
+    root.innerHTML = '' +
+      '<style>' + debugDialogCss() + '</style>' +
+      '<div class="hs-debug-mask">' +
+        '<div class="hs-debug-card" role="dialog" aria-modal="true" aria-labelledby="hs-debug-title">' +
+          '<div class="hs-debug-kicker">华商插件 · 页面诊断</div>' +
+          '<h2 id="hs-debug-title">导出调试数据</h2>' +
+          '<p>默认只保留课表结构、节次、周次、学期和时间模式。不会导出 Cookie、账号、密码或网址参数。</p>' +
+          '<label class="hs-debug-private"><input id="hs-debug-private" type="checkbox"><span>包含完整课表文字（可能包含课程、教师和地点，仅在你愿意提供时勾选）</span></label>' +
+          '<textarea id="hs-debug-output" readonly spellcheck="false"></textarea>' +
+          '<div class="hs-debug-actions">' +
+            '<button id="hs-debug-close" class="hs-debug-secondary" type="button">关闭</button>' +
+            '<button id="hs-debug-copy" class="hs-debug-primary" type="button">复制 JSON</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    (document.documentElement || document.body).appendChild(root);
+
+    var output = root.querySelector('#hs-debug-output');
+    var privateToggle = root.querySelector('#hs-debug-private');
+    function refresh() {
+      try {
+        output.value = JSON.stringify(buildDebugSnapshot(document, privateToggle.checked), null, 2);
+      } catch (error) {
+        output.value = JSON.stringify({ error: String(error && error.message ? error.message : error) }, null, 2);
+      }
+    }
+    refresh();
+    privateToggle.addEventListener('change', refresh);
+    root.querySelector('#hs-debug-close').addEventListener('click', removeDebugDialog);
+    root.querySelector('#hs-debug-copy').addEventListener('click', function () {
+      copyDebugText(output.value, output);
+    });
+  }
+
+  function debugDialogCss() {
+    return '' +
+      '#' + DEBUG_DIALOG_ID + ',#' + DEBUG_DIALOG_ID + ' *{box-sizing:border-box!important;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif!important}' +
+      '#' + DEBUG_DIALOG_ID + '{all:initial!important;position:fixed!important;inset:0!important;z-index:2147483647!important;display:block!important;color:#17212b!important}' +
+      '#' + DEBUG_DIALOG_ID + ' .hs-debug-mask{position:absolute!important;inset:0!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:14px!important;background:rgba(15,23,42,.6)!important}' +
+      '#' + DEBUG_DIALOG_ID + ' .hs-debug-card{width:min(100%,520px)!important;max-height:calc(100% - 20px)!important;display:flex!important;flex-direction:column!important;padding:20px!important;background:#fff!important;border:1px solid rgba(15,23,42,.1)!important;border-radius:22px!important;box-shadow:0 24px 70px rgba(15,23,42,.35)!important}' +
+      '#' + DEBUG_DIALOG_ID + ' .hs-debug-kicker{font-size:11px!important;font-weight:750!important;letter-spacing:.06em!important;color:#3569d4!important}' +
+      '#' + DEBUG_DIALOG_ID + ' h2{margin:5px 0 7px!important;font-size:21px!important;line-height:1.3!important;color:#0f172a!important}' +
+      '#' + DEBUG_DIALOG_ID + ' p{margin:0 0 11px!important;font-size:12px!important;line-height:1.55!important;color:#52606d!important}' +
+      '#' + DEBUG_DIALOG_ID + ' .hs-debug-private{display:flex!important;align-items:flex-start!important;gap:8px!important;margin-bottom:10px!important;padding:10px!important;border-radius:12px!important;background:#fff8e8!important;color:#7a4b00!important;font-size:11px!important;line-height:1.45!important}' +
+      '#' + DEBUG_DIALOG_ID + ' input{margin-top:2px!important;accent-color:#3569d4!important}' +
+      '#' + DEBUG_DIALOG_ID + ' textarea{width:100%!important;min-height:210px!important;height:48vh!important;resize:none!important;padding:11px!important;border:1px solid #d0d5dd!important;border-radius:13px!important;background:#f8fafc!important;color:#344054!important;font:11px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace!important;outline:none!important}' +
+      '#' + DEBUG_DIALOG_ID + ' .hs-debug-actions{display:grid!important;grid-template-columns:1fr 1.3fr!important;gap:9px!important;margin-top:12px!important}' +
+      '#' + DEBUG_DIALOG_ID + ' button{height:43px!important;border-radius:12px!important;font-size:13px!important;font-weight:700!important;cursor:pointer!important}' +
+      '#' + DEBUG_DIALOG_ID + ' .hs-debug-secondary{border:1px solid #d0d5dd!important;background:#fff!important;color:#475467!important}' +
+      '#' + DEBUG_DIALOG_ID + ' .hs-debug-primary{border:0!important;background:#3569d4!important;color:#fff!important;box-shadow:0 8px 20px rgba(53,105,212,.22)!important}';
+  }
+
+  function buildDebugSnapshot(doc, includePrivateText) {
+    var table = findTimetableTable(doc);
+    var snapshot = {
+      format: 'huashang-xhp-debug-v1',
+      pluginVersion: '1.0.1',
+      capturedAt: new Date().toISOString(),
+      page: safePageIdentity(),
+      semester: detectSemester(doc),
+      includePrivateText: !!includePrivateText,
+      controls: collectDebugControls(doc),
+      table: table ? collectDebugTable(table, includePrivateText) : null
+    };
+    if (table && includePrivateText) snapshot.table.outerHTML = table.outerHTML;
+    return snapshot;
+  }
+
+  function safePageIdentity() {
+    try {
+      var url = new URL(window.location.href);
+      return { origin: url.origin, path: url.pathname };
+    } catch (_) {
+      return { origin: HUASHANG_ORIGIN, path: '' };
+    }
+  }
+
+  function collectDebugControls(doc) {
+    return Array.prototype.slice.call(doc.querySelectorAll('select')).map(function (select) {
+      var option = select.options && select.selectedIndex >= 0 ? select.options[select.selectedIndex] : null;
+      return {
+        id: cleanText(select.id),
+        name: cleanText(select.name),
+        selectedText: cleanText(option ? option.textContent : ''),
+        selectedValue: cleanText(option ? option.value : '')
+      };
+    });
+  }
+
+  function collectDebugTable(table, includePrivateText) {
+    var rows = Array.prototype.slice.call(table.rows || table.querySelectorAll('tr'));
+    return {
+      id: cleanText(table.id),
+      className: cleanText(table.className),
+      rowCount: rows.length,
+      rows: rows.map(function (row, rowIndex) {
+        return {
+          rowIndex: rowIndex,
+          cells: rowCells(row).map(function (cell, cellIndex) {
+            var lines = htmlLines(cell).map(function (line, lineIndex) {
+              return debugLine(line, includePrivateText, lineIndex);
+            });
+            return {
+              cellIndex: cellIndex,
+              tag: String(cell.tagName || '').toLowerCase(),
+              rowSpan: parseInt(cell.rowSpan || cell.getAttribute('rowspan') || 1, 10),
+              colSpan: parseInt(cell.colSpan || cell.getAttribute('colspan') || 1, 10),
+              className: cleanText(cell.className),
+              lines: lines,
+              titled: Array.prototype.slice.call(cell.querySelectorAll('[title]')).map(function (element, titledIndex) {
+                return {
+                  title: cleanText(element.getAttribute('title')),
+                  text: debugLine(element.textContent, includePrivateText, titledIndex)
+                };
+              })
+            };
+          })
+        };
+      })
+    };
+  }
+
+  function debugLine(value, includePrivateText, index) {
+    var text = cleanText(value);
+    if (includePrivateText || isDebugStructuralText(text)) return text;
+    return text ? '<内容已脱敏:' + (index + 1) + '>' : '';
+  }
+
+  function isDebugStructuralText(text) {
+    if (!text) return true;
+    return /星期[一二三四五六日天]|第?[一二三四五六七八九十百\d]+(?:[-—至][一二三四五六七八九十百\d]+)?大?节|\d{1,2}(?::\d{2})?\s*[-—至]\s*\d{1,2}(?::\d{2})?|\d[\d,，、\-—\s]*(?:周|节)|学年|学期|时间模式|广州校区|肇庆校区|全部周|单双周/i.test(text);
+  }
+
+  function copyDebugText(text, textarea) {
+    function fallbackCopy() {
+      textarea.focus();
+      textarea.select();
+      textarea.setSelectionRange(0, textarea.value.length);
+      var copied = false;
+      try { copied = document.execCommand('copy'); } catch (_) {}
+      toast(copied ? '调试数据已复制，请粘贴保存为 JSON 后发送' : '自动复制失败，请长按文本全选复制');
+    }
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      navigator.clipboard.writeText(text).then(function () {
+        toast('调试数据已复制，请粘贴保存为 JSON 后发送');
+      }).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+  }
+
+  function removeDebugDialog() {
+    var existing = document.getElementById(DEBUG_DIALOG_ID);
+    if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
   }
 
   function buildImportPayload(parsed, currentSemester, semesterMeta, campus) {
@@ -419,12 +612,12 @@
     if (result.campus === 'zhaoqing') {
       return result.mixed
         ? '检测到跨校区课程，已按你选择的肇庆校区设置节次时间'
-        : '已识别肇庆校区并设置 11 节上课时间';
+        : '已识别肇庆校区并设置 13 节上课时间';
     }
     if (result.campus === 'guangzhou') {
       return result.mixed
         ? '检测到跨校区课程，已按你选择的广州校区设置节次时间'
-        : '已识别广州校区并设置 11 节上课时间';
+        : '已识别广州校区并设置 13 节上课时间';
     }
     if (result.tied) return '两个校区课程占比相同，未覆盖 App 的节次时间';
     return '未能从上课地点识别校区，未覆盖 App 的节次时间';
@@ -720,7 +913,7 @@
 
   function looksLikeExplicitSectionLine(line) {
     var value = normalizeSymbols(line).trim();
-    return /^(?:第)?\s*[\[【]?\s*\d{1,2}(?:\s*[-,]\s*\d{1,2})*\s*[\]】]?\s*节(?:次)?$/.test(value);
+    return /^(?:第)?\s*[\[【]?\s*\d{1,2}(?:\s*[-,]\s*\d{1,2})*\s*节(?:次)?\s*[\]】]?$/.test(value);
   }
 
   function inferSectionsFromRow(row, ordinal) {
@@ -991,6 +1184,10 @@
     if (match) {
       var year = parseInt(match[3] === '1' ? match[1] : match[2], 10);
       date = match[3] === '1' ? new Date(year, 8, 1) : new Date(year, 1, 20);
+      if (match[3] === '1') {
+        while (date.getDay() !== 1) date.setDate(date.getDate() - 1);
+        return localIsoDate(date);
+      }
     } else {
       date = new Date();
     }
@@ -1205,6 +1402,7 @@
       detectCampus: detectCampus,
       parseWeeks: parseWeeks,
       parseSections: parseSections,
+      looksLikeExplicitSectionLine: looksLikeExplicitSectionLine,
       weeksToRule: weeksToRule,
       normalizeSemesterName: normalizeSemesterName,
       guessSemesterStartDate: guessSemesterStartDate,
