@@ -8,6 +8,7 @@ import json
 import re
 import sys
 import zipfile
+from datetime import datetime
 from pathlib import Path, PurePosixPath
 
 
@@ -37,6 +38,16 @@ class ValidationError(Exception):
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise ValidationError(message)
+
+
+def is_iso_datetime(value: object) -> bool:
+    if not isinstance(value, str) or not value:
+        return False
+    try:
+        datetime.fromisoformat(value.replace("Z", "+00:00"))
+        return True
+    except ValueError:
+        return False
 
 
 def read_json(path: Path) -> dict:
@@ -168,6 +179,7 @@ def validate() -> None:
     require(update.get("schemaVersion") == 1, "app/update.json must use schemaVersion 1")
     require(isinstance(update.get("versionCode"), int) and update["versionCode"] >= 1, "Invalid app versionCode")
     require(isinstance(update.get("versionName"), str) and update["versionName"], "Invalid app versionName")
+    require(is_iso_datetime(update.get("publishedAt")), "Invalid app publishedAt")
     require(
         str(update.get("downloadUrl", "")).startswith(OFFICIAL_RELEASE_PREFIX),
         "App downloadUrl must use the official GitHub Release",
@@ -189,6 +201,10 @@ def validate() -> None:
         )
         release_codes.add(release_code)
         require(isinstance(release.get("versionName"), str) and release["versionName"], "Invalid app release versionName")
+        require(
+            is_iso_datetime(release.get("publishedAt")),
+            f"Invalid app release publishedAt for versionCode {release_code}",
+        )
         release_notes = release.get("notes")
         require(
             isinstance(release_notes, list)

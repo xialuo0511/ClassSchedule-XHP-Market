@@ -1,21 +1,32 @@
 {
   "$schema": "../schemas/app-update.schema.json",
   "schemaVersion": 1,
-  "versionCode": 4,
-  "versionName": "1.2.1",
-  "publishedAt": "2026-08-29T12:35:06Z",
+  "versionCode": 5,
+  "versionName": "1.2.2",
+  "publishedAt": "2026-08-29T12:47:59Z",
   "mandatory": false,
-  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.2.1/ClassSchedule-1.2.1.apk",
-  "sha256": "f35bb1261f4a7f497fac61166c459a66d98a918ab98fc51e7ab76b070c8c74c2",
+  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.2.2/ClassSchedule-1.2.2.apk",
+  "sha256": "c6277a1b9d8b95653234724c4c178af7a086b85d9b97d457abe7d7fcd4479f0f",
   "releaseNotes": [
-    "更新安装包改为由 App 直接下载并显示实时进度，避免小米系统下载组件停在 0%",
-    "下载完成后校验官方索引中的 SHA-256，再交给系统安装器确认安装",
-    "修复更新日志中损坏占位字符显示为乱码的问题，并改用兼容性更好的纯文本排版"
+    "已是最新版本时提供默认收起的历史更新日志入口",
+    "展开后按版本从新到旧展示发布时间和每个版本的更新内容",
+    "展开与收起沿用更新弹窗的平滑高度过渡，并支持在固定区域内滚动查看"
   ],
   "releases": [
     {
+      "versionCode": 5,
+      "versionName": "1.2.2",
+      "publishedAt": "2026-08-29T12:47:59Z",
+      "notes": [
+        "已是最新版本时提供默认收起的历史更新日志入口",
+        "展开后按版本从新到旧展示发布时间和每个版本的更新内容",
+        "展开与收起沿用更新弹窗的平滑高度过渡，并支持在固定区域内滚动查看"
+      ]
+    },
+    {
       "versionCode": 4,
       "versionName": "1.2.1",
+      "publishedAt": "2026-08-29T12:35:06Z",
       "notes": [
         "更新安装包改为由 App 直接下载并显示实时进度，避免小米系统下载组件停在 0%",
         "下载完成后校验官方索引中的 SHA-256，再交给系统安装器确认安装",
@@ -25,6 +36,7 @@
     {
       "versionCode": 3,
       "versionName": "1.2",
+      "publishedAt": "2026-08-29T08:03:32Z",
       "notes": [
         "启动 App 后会在后台静默检查新版本，发现更新时在设置页“检查更新”旁显示提示，不再主动弹窗打断使用",
         "重构考试与作业界面，支持将已完成事项恢复，并统一日期、时间与提醒选择体验",
@@ -36,6 +48,7 @@
     {
       "versionCode": 2,
       "versionName": "1.1",
+      "publishedAt": "2026-08-28T00:00:00Z",
       "notes": [
         "新增官方 XHP 插件市场，可查看、安装和更新已收录插件",
         "接入每日一次的版本检查，并从官方 GitHub Release 下载更新",
