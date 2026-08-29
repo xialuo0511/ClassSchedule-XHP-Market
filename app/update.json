@@ -1,20 +1,27 @@
 {
   "$schema": "../schemas/app-update.schema.json",
   "schemaVersion": 1,
-  "versionCode": 3,
-  "versionName": "1.2",
-  "publishedAt": "2026-08-29T08:03:32Z",
+  "versionCode": 4,
+  "versionName": "1.2.1",
+  "publishedAt": "2026-08-29T12:35:06Z",
   "mandatory": false,
-  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.2/ClassSchedule-1.2.apk",
-  "sha256": "52d6cf6ae5f3dda3bb481df6d38ca645962a2b2901121771a3e4000ca5d9fd55",
+  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.2.1/ClassSchedule-1.2.1.apk",
+  "sha256": "f35bb1261f4a7f497fac61166c459a66d98a918ab98fc51e7ab76b070c8c74c2",
   "releaseNotes": [
-    "启动 App 后会在后台静默检查新版本，发现更新时在设置页“检查更新”旁显示提示，不再主动弹窗打断使用",
-    "重构考试与作业界面，支持将已完成事项恢复，并统一日期、时间与提醒选择体验",
-    "优化插件市场、插件详情与安装安全确认，补充逐版本更新日志和 GitHub 网络提示",
-    "完善上课提醒、每日课程摘要与桌面小组件设置，并修复 Android 16 滚动选择器兼容问题",
-    "改进课程导入、同名课程多时段地点显示及学期开始前和结束后的课程阅览体验"
+    "更新安装包改为由 App 直接下载并显示实时进度，避免小米系统下载组件停在 0%",
+    "下载完成后校验官方索引中的 SHA-256，再交给系统安装器确认安装",
+    "修复更新日志中损坏占位字符显示为乱码的问题，并改用兼容性更好的纯文本排版"
   ],
   "releases": [
+    {
+      "versionCode": 4,
+      "versionName": "1.2.1",
+      "notes": [
+        "更新安装包改为由 App 直接下载并显示实时进度，避免小米系统下载组件停在 0%",
+        "下载完成后校验官方索引中的 SHA-256，再交给系统安装器确认安装",
+        "修复更新日志中损坏占位字符显示为乱码的问题，并改用兼容性更好的纯文本排版"
+      ]
+    },
     {
       "versionCode": 3,
       "versionName": "1.2",
