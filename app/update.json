@@ -1,18 +1,31 @@
 {
   "$schema": "../schemas/app-update.schema.json",
   "schemaVersion": 1,
-  "versionCode": 2,
-  "versionName": "1.1",
-  "publishedAt": "2026-08-28T00:00:00Z",
+  "versionCode": 3,
+  "versionName": "1.2",
+  "publishedAt": "2026-08-29T08:03:32Z",
   "mandatory": false,
-  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.1/ClassSchedule-1.1.apk",
-  "sha256": "0c999ab0cbf1f8d5a3810d74732348219fd657e8c2cac369c03453bdbfb2b136",
+  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.2/ClassSchedule-1.2.apk",
+  "sha256": "52d6cf6ae5f3dda3bb481df6d38ca645962a2b2901121771a3e4000ca5d9fd55",
   "releaseNotes": [
-    "新增官方 XHP 插件市场，可查看、安装和更新已收录插件",
-    "接入每日一次的版本检查，并从官方 GitHub Release 下载更新",
-    "本地插件与市场插件安装前都会展示安全提示和能力说明"
+    "启动 App 后会在后台静默检查新版本，发现更新时在设置页“检查更新”旁显示提示，不再主动弹窗打断使用",
+    "重构考试与作业界面，支持将已完成事项恢复，并统一日期、时间与提醒选择体验",
+    "优化插件市场、插件详情与安装安全确认，补充逐版本更新日志和 GitHub 网络提示",
+    "完善上课提醒、每日课程摘要与桌面小组件设置，并修复 Android 16 滚动选择器兼容问题",
+    "改进课程导入、同名课程多时段地点显示及学期开始前和结束后的课程阅览体验"
   ],
   "releases": [
+    {
+      "versionCode": 3,
+      "versionName": "1.2",
+      "notes": [
+        "启动 App 后会在后台静默检查新版本，发现更新时在设置页“检查更新”旁显示提示，不再主动弹窗打断使用",
+        "重构考试与作业界面，支持将已完成事项恢复，并统一日期、时间与提醒选择体验",
+        "优化插件市场、插件详情与安装安全确认，补充逐版本更新日志和 GitHub 网络提示",
+        "完善上课提醒、每日课程摘要与桌面小组件设置，并修复 Android 16 滚动选择器兼容问题",
+        "改进课程导入、同名课程多时段地点显示及学期开始前和结束后的课程阅览体验"
+      ]
+    },
     {
       "versionCode": 2,
       "versionName": "1.1",

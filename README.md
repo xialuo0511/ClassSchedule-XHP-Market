@@ -13,7 +13,10 @@
 | 广州华商学院课表导入（测试版） | 1.0.2 | Xialuo | [下载 XHP](packages/dev.xinghan.huashang/1.0.2/huashang-course-import-1.0.2.xhp) |
 
 市场索引：[`market/index.json`](market/index.json)
+
 App 更新索引：[`app/update.json`](app/update.json)
+
+App 更新日志：[`app/CHANGELOG.md`](app/CHANGELOG.md)
 
 ## 仓库结构
 
