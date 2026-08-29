@@ -1,7 +1,7 @@
 {
   "$schema": "../schemas/market.schema.json",
   "schemaVersion": 1,
-  "updatedAt": "2026-08-28T13:14:46Z",
+  "updatedAt": "2026-08-29T00:00:00Z",
   "plugins": [
     {
       "id": "dev.xinghan.qiangzhi",
@@ -26,6 +26,16 @@
       "sourceUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.qiangzhi",
       "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.qiangzhi/README.md",
       "sha256": "8e33be14b0d7ba5fe735fd4d29c15d9e9e93aceb3673f36aee2d5584292ca5af",
+      "releases": [
+        {
+          "version": "1.1.4",
+          "notes": [
+            "保留 WebView Cookie、第三方 Cookie 与统一认证会话",
+            "优化登录入口识别与移动端导入工具栏",
+            "修复节次误识别，并保留同一课程的多个时间和地点"
+          ]
+        }
+      ],
       "updatedAt": "2026-08-27"
     },
     {
@@ -52,6 +62,30 @@
       "sourceUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.gdufe",
       "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/blob/main/plugins/dev.xinghan.gdufe/CHANGELOG.md",
       "sha256": "8a36f257f36fb26fcacbe961f2f7955102fe867d71e6e0ab7968c698e100b17e",
+      "releases": [
+        {
+          "version": "2.0.0",
+          "notes": [
+            "新增广东财经大学教务系统自动导入",
+            "支持广州与佛山（三水）校区 12 节时间"
+          ]
+        },
+        {
+          "version": "2.0.1",
+          "notes": [
+            "修复会话未初始化时反复显示 flag1=2",
+            "登录入口改为先创建会话再进入课表页"
+          ]
+        },
+        {
+          "version": "2.0.2",
+          "notes": [
+            "使用独立插件 ID，与通用强智插件区分",
+            "移除一次性登录令牌不支持的后台直接更新",
+            "更新课表时统一进入可见网页登录流程"
+          ]
+        }
+      ],
       "updatedAt": "2026-08-27"
     },
     {
@@ -79,6 +113,31 @@
       "sourceUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.huashang",
       "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/blob/main/plugins/dev.xinghan.huashang/CHANGELOG.md",
       "sha256": "b16fcf6568c561301c2ffcd061ea2307a549ace06a5c015210692ede0afeb6a3",
+      "releases": [
+        {
+          "version": "1.0.0",
+          "notes": [
+            "新增广州华商学院强智教务适配",
+            "支持广州或肇庆校区选择与课表导入"
+          ]
+        },
+        {
+          "version": "1.0.1",
+          "notes": [
+            "修复四节连排被识别为两节",
+            "节次模型扩展为 13 节并修复开学日期回退",
+            "新增脱敏调试数据导出"
+          ]
+        },
+        {
+          "version": "1.0.2",
+          "notes": [
+            "以详细周次字段中的节次为准识别四节连排",
+            "适配 9–11 与 12–13 节分组",
+            "优先读取页面校区时间模式并固定已确认开学日"
+          ]
+        }
+      ],
       "updatedAt": "2026-08-28"
     }
   ]

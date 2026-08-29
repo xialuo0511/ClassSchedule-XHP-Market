@@ -50,6 +50,31 @@
         "type": "string",
         "minLength": 1
       }
+    },
+    "releases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["versionCode", "versionName", "notes"],
+        "properties": {
+          "versionCode": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "versionName": {
+            "type": "string",
+            "minLength": 1
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -129,6 +129,25 @@ def validate() -> None:
             f"Download URL must use the official raw repository for {plugin_id}",
         )
         require(str(entry.get("sourceUrl", "")).startswith("https://github.com/xialuo0511/ClassSchedule-XHP-Market/"), f"Invalid sourceUrl for {plugin_id}")
+        releases = entry.get("releases", [])
+        require(isinstance(releases, list), f"Invalid releases for {plugin_id}")
+        release_versions: set[str] = set()
+        for release in releases:
+            require(isinstance(release, dict), f"Invalid release entry for {plugin_id}")
+            release_version = release.get("version")
+            require(
+                isinstance(release_version, str)
+                and VERSION_PATTERN.fullmatch(release_version) is not None
+                and release_version not in release_versions,
+                f"Invalid or duplicate release version for {plugin_id}: {release_version}",
+            )
+            release_versions.add(release_version)
+            release_notes = release.get("notes")
+            require(
+                isinstance(release_notes, list)
+                and all(isinstance(note, str) and note for note in release_notes),
+                f"Invalid release notes for {plugin_id} {release_version}",
+            )
         source_dir = ROOT / "plugins" / plugin_id
         require(source_dir.is_dir(), f"Source directory missing for {plugin_id}")
         require((source_dir / "main.js").is_file() and (source_dir / "main.js").stat().st_size > 0, f"main.js missing or empty for {plugin_id}")
@@ -156,6 +175,26 @@ def validate() -> None:
     require(re.fullmatch(r"[a-f0-9]{64}", str(update.get("sha256", ""))) is not None, "Invalid app SHA-256")
     notes = update.get("releaseNotes")
     require(isinstance(notes, list) and all(isinstance(note, str) and note for note in notes), "Invalid app releaseNotes")
+    releases = update.get("releases", [])
+    require(isinstance(releases, list), "Invalid app releases")
+    release_codes: set[int] = set()
+    for release in releases:
+        require(isinstance(release, dict), "Invalid app release entry")
+        release_code = release.get("versionCode")
+        require(
+            isinstance(release_code, int)
+            and 1 <= release_code <= update["versionCode"]
+            and release_code not in release_codes,
+            f"Invalid or duplicate app release versionCode: {release_code}",
+        )
+        release_codes.add(release_code)
+        require(isinstance(release.get("versionName"), str) and release["versionName"], "Invalid app release versionName")
+        release_notes = release.get("notes")
+        require(
+            isinstance(release_notes, list)
+            and all(isinstance(note, str) and note for note in release_notes),
+            f"Invalid app release notes for versionCode {release_code}",
+        )
     print(f"Validated app update metadata for {update['versionName']}.")
 
 
