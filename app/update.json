@@ -1,19 +1,28 @@
 {
   "$schema": "../schemas/app-update.schema.json",
   "schemaVersion": 1,
-  "versionCode": 6,
-  "versionName": "1.2.3",
-  "publishedAt": "2026-08-30T01:48:11Z",
+  "versionCode": 7,
+  "versionName": "1.2.4",
+  "publishedAt": "2026-08-30T02:07:25Z",
   "mandatory": false,
-  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.2.3/ClassSchedule-1.2.3.apk",
-  "sha256": "517868dafd336d5239b350347e0568c4698b0f181333ec244d51f8092657e1ab",
+  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.2.4/ClassSchedule-1.2.4.apk",
+  "sha256": "e70a25c33c3e912571a1e74c7add140e31a8260f4014303fb1eaf9abdc360563",
   "releaseNotes": [
-    "历史更新日志区域提高到 280dp，并使用主题重点色突出各版本号",
-    "下载进度升级为带图标、字节进度、百分比标签和圆角轨道的主题色卡片",
-    "后台发现新版本时显示一次可操作提示，同一版本不再重复提醒",
-    "设置页“发现 vX.X”徽标改为跟随当前主题颜色"
+    "修复跨多个版本升级时更新日志过长、内容无法完整查看的问题",
+    "更新日志短内容保持自适应高度，超过 240dp 后可在卡片内独立滚动",
+    "限制日志区域高度，避免“稍后”和“立即更新”按钮被推出屏幕"
   ],
   "releases": [
+    {
+      "versionCode": 7,
+      "versionName": "1.2.4",
+      "publishedAt": "2026-08-30T02:07:25Z",
+      "notes": [
+        "修复跨多个版本升级时更新日志过长、内容无法完整查看的问题",
+        "更新日志短内容保持自适应高度，超过 240dp 后可在卡片内独立滚动",
+        "限制日志区域高度，避免“稍后”和“立即更新”按钮被推出屏幕"
+      ]
+    },
     {
       "versionCode": 6,
       "versionName": "1.2.3",
