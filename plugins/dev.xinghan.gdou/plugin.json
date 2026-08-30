@@ -1,0 +1,11 @@
+{
+  "id": "dev.xinghan.gdou",
+  "name": "广东海洋大学课表导入",
+  "version": "1.0.0",
+  "author": "Xialuo",
+  "description": "适配广东海洋大学正方教务系统，登录后读取个人课表并在导入前核对学期信息",
+  "entryUrl": "https://jw.gdou.edu.cn/xtgl/login_slogin.html",
+  "protocolVersion": 3,
+  "capabilities": ["course_import", "web_ui"],
+  "activation": { "type": "web", "label": "导入课表", "url": "https://jw.gdou.edu.cn/xtgl/login_slogin.html" }
+}

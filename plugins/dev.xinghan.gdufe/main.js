@@ -961,7 +961,7 @@
         '#' + STATUS_ID + ' .message{font-size:12px;line-height:1.55;color:' + (error ? '#b42318' : '#52606d') + '}' +
         '#' + STATUS_ID + ' button{width:100%;height:38px;margin-top:10px;border:0;border-radius:10px;background:#3569d4;color:#fff;font-size:12px;font-weight:700}' +
       '</style>' +
-      '<div class="title">广财课表自动导入</div>' +
+      '<div class="title">广东财经大学课表导入</div>' +
       '<div class="message"></div>' +
       (buttonText ? '<button type="button"></button>' : '');
     root.querySelector('.message').textContent = message;

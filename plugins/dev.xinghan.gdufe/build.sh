@@ -2,7 +2,7 @@
 set -eu
 
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-OUTPUT=${1:-"$SCRIPT_DIR/dist/gdufe-course-import-2.0.2.xhp"}
+OUTPUT=${1:-"$SCRIPT_DIR/dist/gdufe-course-import-2.0.3.xhp"}
 
 case "$OUTPUT" in
   *.xhp) ;;

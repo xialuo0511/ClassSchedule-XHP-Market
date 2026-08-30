@@ -1,7 +1,7 @@
 {
   "$schema": "../schemas/market.schema.json",
   "schemaVersion": 1,
-  "updatedAt": "2026-08-29T00:00:00Z",
+  "updatedAt": "2026-08-30T00:00:00Z",
   "plugins": [
     {
       "id": "dev.xinghan.qiangzhi",
@@ -40,10 +40,10 @@
     },
     {
       "id": "dev.xinghan.gdufe",
-      "name": "广财课表自动导入",
+      "name": "广东财经大学课表导入",
       "author": "Xialuo",
-      "description": "登录广财教务系统后自动导入课表，并按广州或佛山（三水）校区设置 12 节时间",
-      "latestVersion": "2.0.2",
+      "description": "登录广东财经大学教务系统后自动导入课表，并按广州或佛山（三水）校区设置 12 节时间",
+      "latestVersion": "2.0.3",
       "protocolVersion": 3,
       "minAppVersion": "1.1",
       "minAppVersionCode": 2,
@@ -57,11 +57,11 @@
         "广东财经大学",
         "强智教务"
       ],
-      "packagePath": "packages/dev.xinghan.gdufe/2.0.2/gdufe-course-import-2.0.2.xhp",
-      "downloadUrl": "https://raw.githubusercontent.com/xialuo0511/ClassSchedule-XHP-Market/main/packages/dev.xinghan.gdufe/2.0.2/gdufe-course-import-2.0.2.xhp",
+      "packagePath": "packages/dev.xinghan.gdufe/2.0.3/gdufe-course-import-2.0.3.xhp",
+      "downloadUrl": "https://raw.githubusercontent.com/xialuo0511/ClassSchedule-XHP-Market/main/packages/dev.xinghan.gdufe/2.0.3/gdufe-course-import-2.0.3.xhp",
       "sourceUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.gdufe",
       "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/blob/main/plugins/dev.xinghan.gdufe/CHANGELOG.md",
-      "sha256": "8a36f257f36fb26fcacbe961f2f7955102fe867d71e6e0ab7968c698e100b17e",
+      "sha256": "81a517a48e8bf68fc9af3a5bc57aef2e39d8a5e1e09264fed5bf220f6efc1071",
       "releases": [
         {
           "version": "2.0.0",
@@ -84,9 +84,16 @@
             "移除一次性登录令牌不支持的后台直接更新",
             "更新课表时统一进入可见网页登录流程"
           ]
+        },
+        {
+          "version": "2.0.3",
+          "notes": [
+            "插件名称统一为广东财经大学课表导入",
+            "移除更新信息弹窗内重复的关闭动作"
+          ]
         }
       ],
-      "updatedAt": "2026-08-27"
+      "updatedAt": "2026-08-30"
     },
     {
       "id": "dev.xinghan.huashang",
@@ -139,6 +146,60 @@
         }
       ],
       "updatedAt": "2026-08-28"
+    },
+    {
+      "id": "dev.xinghan.jyu",
+      "name": "嘉应学院课表导入",
+      "author": "Xialuo",
+      "description": "适配嘉应学院正方教务系统，登录后读取个人课表并在导入前核对学期信息",
+      "latestVersion": "1.0.0",
+      "protocolVersion": 3,
+      "minAppVersion": "1.1",
+      "minAppVersionCode": 2,
+      "capabilities": ["course_import", "web_ui"],
+      "official": false,
+      "tags": ["嘉应学院", "正方教务", "测试版"],
+      "packagePath": "packages/dev.xinghan.jyu/1.0.0/jyu-course-import-1.0.0.xhp",
+      "downloadUrl": "https://raw.githubusercontent.com/xialuo0511/ClassSchedule-XHP-Market/main/packages/dev.xinghan.jyu/1.0.0/jyu-course-import-1.0.0.xhp",
+      "sourceUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.jyu",
+      "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/blob/main/plugins/dev.xinghan.jyu/CHANGELOG.md",
+      "sha256": "f46822026e90aa28ca24215c805f4e88b9e55c13d98933295b1b64f75de9982d",
+      "releases": [{
+        "version": "1.0.0",
+        "notes": [
+          "新增嘉应学院正方教务个人课表导入",
+          "导入前支持核对学期名称、开学日期、周数和节数",
+          "首版为测试适配，等待真实学生课表验收"
+        ]
+      }],
+      "updatedAt": "2026-08-30"
+    },
+    {
+      "id": "dev.xinghan.gdou",
+      "name": "广东海洋大学课表导入",
+      "author": "Xialuo",
+      "description": "适配广东海洋大学正方教务系统，登录后读取个人课表并在导入前核对学期信息",
+      "latestVersion": "1.0.0",
+      "protocolVersion": 3,
+      "minAppVersion": "1.1",
+      "minAppVersionCode": 2,
+      "capabilities": ["course_import", "web_ui"],
+      "official": false,
+      "tags": ["广东海洋大学", "正方教务", "测试版"],
+      "packagePath": "packages/dev.xinghan.gdou/1.0.0/gdou-course-import-1.0.0.xhp",
+      "downloadUrl": "https://raw.githubusercontent.com/xialuo0511/ClassSchedule-XHP-Market/main/packages/dev.xinghan.gdou/1.0.0/gdou-course-import-1.0.0.xhp",
+      "sourceUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.gdou",
+      "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/blob/main/plugins/dev.xinghan.gdou/CHANGELOG.md",
+      "sha256": "7a6897eb3bcb9f0320ac9862af81d3d6bd57b0e34948449ebd16f4a8a792b206",
+      "releases": [{
+        "version": "1.0.0",
+        "notes": [
+          "新增广东海洋大学正方教务个人课表导入",
+          "导入前支持核对学期名称、开学日期、周数和节数",
+          "首版为测试适配，等待真实学生课表验收"
+        ]
+      }],
+      "updatedAt": "2026-08-30"
     }
   ]
 }
