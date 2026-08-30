@@ -1,19 +1,32 @@
 {
   "$schema": "../schemas/app-update.schema.json",
   "schemaVersion": 1,
-  "versionCode": 9,
-  "versionName": "1.2.6",
-  "publishedAt": "2026-08-30T12:12:51Z",
+  "versionCode": 10,
+  "versionName": "1.2.7",
+  "publishedAt": "2026-08-30T12:35:52Z",
   "mandatory": false,
-  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.2.6/ClassSchedule-1.2.6.apk",
-  "sha256": "4998cfe79ee7249d18629e50998168dc7e45e83991e2be441ef890a2db515a21",
+  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.2.7/ClassSchedule-1.2.7.apk",
+  "sha256": "508c176e28a28659dec273e36318a2023bc57daddcf7befaa71dbab7534554cd",
   "releaseNotes": [
-    "课程详情使用定位信息块与教师信息卡，地点和教师更容易区分",
-    "修复插件详情加载完成后弹窗下移及圆角阴影异常",
-    "修复双列及三列滚动选择器向下滑动时可能误关闭弹窗的问题",
-    "调课弹窗改用统一日期和节次滚轮，并增加课时数与课程冲突校验"
+    "所有底部弹窗现在都可通过系统返回键直接关闭",
+    "调课方式立即切换，仅保留表单高度过渡，不再等待淡出",
+    "周课表使用定位与人物图标区分地点和教师信息",
+    "后台新版本提示改为更简短自然的文案",
+    "修复深色模式下插件入口、列表、市场和详情图标没有圆角的问题"
   ],
   "releases": [
+    {
+      "versionCode": 10,
+      "versionName": "1.2.7",
+      "publishedAt": "2026-08-30T12:35:52Z",
+      "notes": [
+        "所有底部弹窗现在都可通过系统返回键直接关闭",
+        "调课方式立即切换，仅保留表单高度过渡，不再等待淡出",
+        "周课表使用定位与人物图标区分地点和教师信息",
+        "后台新版本提示改为更简短自然的文案",
+        "修复深色模式下插件入口、列表、市场和详情图标没有圆角的问题"
+      ]
+    },
     {
       "versionCode": 9,
       "versionName": "1.2.6",
