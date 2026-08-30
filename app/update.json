@@ -7,8 +7,18 @@
   "mandatory": false,
   "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.2.5/ClassSchedule-1.2.5.apk",
   "sha256": "619939ed8665d1463cab9285e4813698b48f221cada7d5fbb69c36f322a18d1a",
-  "releaseNotes": [],
+  "releaseNotes": [
+    "插件市场新增按学校名、插件名、说明、作者和标签的本地搜索"
+  ],
   "releases": [
+    {
+      "versionCode": 8,
+      "versionName": "1.2.5",
+      "publishedAt": "2026-08-30T06:56:55Z",
+      "notes": [
+        "插件市场新增按学校名、插件名、说明、作者和标签的本地搜索"
+      ]
+    },
     {
       "versionCode": 7,
       "versionName": "1.2.4",
