@@ -30,7 +30,7 @@ packages/<plugin-id>/<version>/<file-name>.xhp
 2. 更新 README 和 CHANGELOG。
 3. 从当前源码重新生成 `.xhp`，不要复用旧 `dist`。
 4. 将包放入对应版本目录。
-5. 更新 `market/index.json` 的版本、下载地址、能力和 SHA-256。
+5. 更新 `market/index.json` 的版本、下载地址、能力、标签和 SHA-256。`tags` 的第一个分类标签用于市场筛选：教务系统课表插件使用 `教务导入`，通用工具或增强能力插件使用 `功能插件`；后续标签可继续填写学校、教务系统类型和测试状态。
 6. 运行 `python scripts/validate_market.py`。
 7. 通过 Pull Request 提交，说明测试的学校、页面和已验证流程。
 
