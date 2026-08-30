@@ -1,16 +1,30 @@
 {
   "$schema": "../schemas/app-update.schema.json",
   "schemaVersion": 1,
-  "versionCode": 8,
-  "versionName": "1.2.5",
-  "publishedAt": "2026-08-30T06:56:55Z",
+  "versionCode": 9,
+  "versionName": "1.2.6",
+  "publishedAt": "2026-08-30T12:12:51Z",
   "mandatory": false,
-  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.2.5/ClassSchedule-1.2.5.apk",
-  "sha256": "619939ed8665d1463cab9285e4813698b48f221cada7d5fbb69c36f322a18d1a",
+  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.2.6/ClassSchedule-1.2.6.apk",
+  "sha256": "4998cfe79ee7249d18629e50998168dc7e45e83991e2be441ef890a2db515a21",
   "releaseNotes": [
-    "插件市场新增按学校名、插件名、说明、作者和标签的本地搜索"
+    "课程详情使用定位信息块与教师信息卡，地点和教师更容易区分",
+    "修复插件详情加载完成后弹窗下移及圆角阴影异常",
+    "修复双列及三列滚动选择器向下滑动时可能误关闭弹窗的问题",
+    "调课弹窗改用统一日期和节次滚轮，并增加课时数与课程冲突校验"
   ],
   "releases": [
+    {
+      "versionCode": 9,
+      "versionName": "1.2.6",
+      "publishedAt": "2026-08-30T12:12:51Z",
+      "notes": [
+        "课程详情使用定位信息块与教师信息卡，地点和教师更容易区分",
+        "修复插件详情加载完成后弹窗下移及圆角阴影异常",
+        "修复双列及三列滚动选择器向下滑动时可能误关闭弹窗的问题",
+        "调课弹窗改用统一日期和节次滚轮，并增加课时数与课程冲突校验"
+      ]
+    },
     {
       "versionCode": 8,
       "versionName": "1.2.5",
