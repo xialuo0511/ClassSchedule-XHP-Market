@@ -1,20 +1,34 @@
 {
   "$schema": "../schemas/app-update.schema.json",
   "schemaVersion": 1,
-  "versionCode": 10,
-  "versionName": "1.2.7",
-  "publishedAt": "2026-08-30T12:35:52Z",
+  "versionCode": 11,
+  "versionName": "1.3",
+  "publishedAt": "2026-08-31T02:46:02Z",
   "mandatory": false,
-  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.2.7/ClassSchedule-1.2.7.apk",
-  "sha256": "508c176e28a28659dec273e36318a2023bc57daddcf7befaa71dbab7534554cd",
+  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.3/ClassSchedule-1.3.apk",
+  "sha256": "4f4e40e3da200e9f85c2089222207ac563d78077b1e3726e8560c988d4562006",
   "releaseNotes": [
-    "所有底部弹窗现在都可通过系统返回键直接关闭",
-    "调课方式立即切换，仅保留表单高度过渡，不再等待淡出",
-    "周课表使用定位与人物图标区分地点和教师信息",
-    "后台新版本提示改为更简短自然的文案",
-    "修复深色模式下插件入口、列表、市场和详情图标没有圆角的问题"
+    "重新设计今日页课程卡、时间轴与当前时间提示，上课地点、教师和节次层级更清晰",
+    "进行中课程使用圆角进度条，并能识别连堂课程中的真实课间，分别显示下课或继续上课倒计时",
+    "重新排版课程详情，上课星期、节次、具体时间、周规则和地点更容易快速确认",
+    "美化手动添加与编辑课程页面，统一卡片、输入框、时间安排和错误提示样式",
+    "优化周课表长课程名、地点和教师的换行与间距，减少内容挤压",
+    "新增课程统一从周课表空白格进入，今日页不再保留重复入口"
   ],
   "releases": [
+    {
+      "versionCode": 11,
+      "versionName": "1.3",
+      "publishedAt": "2026-08-31T02:46:02Z",
+      "notes": [
+        "重新设计今日页课程卡、时间轴与当前时间提示，上课地点、教师和节次层级更清晰",
+        "进行中课程使用圆角进度条，并能识别连堂课程中的真实课间，分别显示下课或继续上课倒计时",
+        "重新排版课程详情，上课星期、节次、具体时间、周规则和地点更容易快速确认",
+        "美化手动添加与编辑课程页面，统一卡片、输入框、时间安排和错误提示样式",
+        "优化周课表长课程名、地点和教师的换行与间距，减少内容挤压",
+        "新增课程统一从周课表空白格进入，今日页不再保留重复入口"
+      ]
+    },
     {
       "versionCode": 10,
       "versionName": "1.2.7",
