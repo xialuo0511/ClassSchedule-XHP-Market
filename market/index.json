@@ -1,7 +1,7 @@
 {
   "$schema": "../schemas/market.schema.json",
   "schemaVersion": 1,
-  "updatedAt": "2026-08-30T00:00:00Z",
+  "updatedAt": "2026-09-01T00:00:00Z",
   "plugins": [
     {
       "id": "dev.xinghan.qiangzhi",
@@ -44,7 +44,7 @@
       "name": "广东财经大学课表导入",
       "author": "Xialuo",
       "description": "登录广东财经大学教务系统后自动导入课表，并按广州或佛山（三水）校区设置 12 节时间",
-      "latestVersion": "2.0.3",
+      "latestVersion": "2.1.0",
       "protocolVersion": 3,
       "minAppVersion": "1.1",
       "minAppVersionCode": 2,
@@ -59,11 +59,11 @@
         "广东财经大学",
         "强智教务"
       ],
-      "packagePath": "packages/dev.xinghan.gdufe/2.0.3/gdufe-course-import-2.0.3.xhp",
-      "downloadUrl": "https://raw.githubusercontent.com/xialuo0511/ClassSchedule-XHP-Market/main/packages/dev.xinghan.gdufe/2.0.3/gdufe-course-import-2.0.3.xhp",
+      "packagePath": "packages/dev.xinghan.gdufe/2.1.0/gdufe-course-import-2.1.0.xhp",
+      "downloadUrl": "https://raw.githubusercontent.com/xialuo0511/ClassSchedule-XHP-Market/main/packages/dev.xinghan.gdufe/2.1.0/gdufe-course-import-2.1.0.xhp",
       "sourceUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.gdufe",
       "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/blob/main/plugins/dev.xinghan.gdufe/CHANGELOG.md",
-      "sha256": "81a517a48e8bf68fc9af3a5bc57aef2e39d8a5e1e09264fed5bf220f6efc1071",
+      "sha256": "680d327670565821b75a8f337eb2ac33cad08ad696ab507ff0b3f79d821c386d",
       "releases": [
         {
           "version": "2.0.0",
@@ -93,9 +93,16 @@
             "插件名称统一为广东财经大学课表导入",
             "移除更新信息弹窗内重复的关闭动作"
           ]
+        },
+        {
+          "version": "2.1.0",
+          "notes": [
+            "导入时提交完整学期信息，可选择覆盖当前学期或新建学期",
+            "覆盖时同步更新每日节数和广州或佛山（三水）校区的节次时间"
+          ]
         }
       ],
-      "updatedAt": "2026-08-30"
+      "updatedAt": "2026-09-01"
     },
     {
       "id": "dev.xinghan.huashang",
@@ -104,8 +111,8 @@
       "description": "适配广州华商学院强智教务，支持四节连排、13 节课表及广州或肇庆校区时间",
       "latestVersion": "1.0.2",
       "protocolVersion": 3,
-      "minAppVersion": "1.1",
-      "minAppVersionCode": 2,
+      "minAppVersion": "1.4",
+      "minAppVersionCode": 13,
       "capabilities": [
         "course_import",
         "web_ui"

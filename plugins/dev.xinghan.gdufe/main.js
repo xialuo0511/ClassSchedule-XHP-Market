@@ -205,14 +205,14 @@
       courses: buildPayloadCourses(parsed.courses, totalWeeks)
     };
 
-    if (shouldCreateSemester(currentSemester, semesterMeta, parsed)) {
-      payload.semester = {
-        name: semesterMeta.name,
-        startDate: semesterMeta.startDate,
-        totalWeeks: totalWeeks,
-        sectionCount: MAX_SECTION_COUNT
-      };
-    }
+    // Always provide the complete semester definition. ClassSchedule 1.4 lets the user decide
+    // whether this definition replaces the current semester or creates a separate semester.
+    payload.semester = {
+      name: semesterMeta.name,
+      startDate: semesterMeta.startDate,
+      totalWeeks: totalWeeks,
+      sectionCount: MAX_SECTION_COUNT
+    };
 
     if (campus.campus === 'sanshui' || campus.campus === 'guangzhou') {
       payload.sectionTimes = SECTION_TIMES[campus.campus].map(copySection);

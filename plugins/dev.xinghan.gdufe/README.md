@@ -4,7 +4,7 @@
 
 ## 使用方式
 
-1. 在课程表 App 中安装 `dist/gdufe-course-import-2.0.3.xhp`。
+1. 在课程表 App 中安装 `dist/gdufe-course-import-2.1.0.xhp`。
 2. 点击插件，先查看当前版本更新信息，再选择“打开插件”。
 3. 在学校网页完成登录和验证码。校外或手机流量环境通常需要先连接学校 VPN。
 4. 登录成功后，插件会自动进入当前学期课表页、读取校历、识别课程与校区，并向 App 提交导入确认。
@@ -33,14 +33,19 @@
 Linux/macOS：
 
 ```sh
-./build.sh ./dist/gdufe-course-import-2.0.3.xhp
+./build.sh ./dist/gdufe-course-import-2.1.0.xhp
 ```
 
 Windows PowerShell：
 
 ```powershell
-./build.ps1 -OutputPath ./dist/gdufe-course-import-2.0.3.xhp
+./build.ps1 -OutputPath ./dist/gdufe-course-import-2.1.0.xhp
 ```
+
+## 2.1.0 更新
+
+- 导入课程时由宿主选择覆盖当前学期或新建学期。
+- 覆盖会同步更新每日节数和广州/三水校区节次时间。
 
 ## 2.0.3 更新
 

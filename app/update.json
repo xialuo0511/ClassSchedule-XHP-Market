@@ -1,21 +1,32 @@
 {
   "$schema": "../schemas/app-update.schema.json",
   "schemaVersion": 1,
-  "versionCode": 12,
-  "versionName": "1.3.1",
-  "publishedAt": "2026-08-31T09:33:11Z",
+  "versionCode": 13,
+  "versionName": "1.4",
+  "publishedAt": "2026-09-01T10:35:33Z",
   "mandatory": false,
-  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.3.1/ClassSchedule-1.3.1.apk",
-  "sha256": "62201d90a0d6ff2fd76590428e7ef8baba8c26099de2cfb86341a8588ecd16cf",
+  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.4/ClassSchedule-1.4.apk",
+  "sha256": "db5322f2397ef18517e0c842401b20683fc69c58116301d5bfc4b84064b9639c",
   "releaseNotes": [
-    "扩大今日页主题渐变范围，无课时改用可进入周课表的信息卡，并移除底部装饰图片",
-    "时间轴使用连续灰色过渡线和同字号起止时间，修复连接段偏移到屏幕左侧的问题",
-    "进行中课程使用自身课程色渐变、清晰的剩余进度轨道，并每两秒显示一次短促水波纹",
-    "今日页与周课表进一步区分上课地点和授课教师，修复当前课程被强制显示为纯色卡片的问题",
-    "底部导航改为贴合屏幕边缘、仅保留左右上角圆角的停靠式设计",
-    "上课前提醒优先显示上课地点，再显示开始倒计时和节次"
+    "支持导入单学期课表 JSON 与全部学期备份，可选择新建、覆盖、追加或完整恢复",
+    "事项可关联已有课程课次，并选择按事项时间或课程开始时间提前提醒",
+    "课程详情可查看关联事项，课程安排变化时会解除已失效的课次关联",
+    "底部导航增加跟随主题色的液态玻璃选中效果，并支持按住横向拖动切换页面",
+    "历史更新日志查看区域由 280dp 提高到 400dp"
   ],
   "releases": [
+    {
+      "versionCode": 13,
+      "versionName": "1.4",
+      "publishedAt": "2026-09-01T10:35:33Z",
+      "notes": [
+        "支持导入单学期课表 JSON 与全部学期备份，可选择新建、覆盖、追加或完整恢复",
+        "事项可关联已有课程课次，并选择按事项时间或课程开始时间提前提醒",
+        "课程详情可查看关联事项，课程安排变化时会解除已失效的课次关联",
+        "底部导航增加跟随主题色的液态玻璃选中效果，并支持按住横向拖动切换页面",
+        "历史更新日志查看区域由 280dp 提高到 400dp"
+      ]
+    },
     {
       "versionCode": 12,
       "versionName": "1.3.1",
