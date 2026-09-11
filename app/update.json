@@ -1,21 +1,30 @@
 {
   "$schema": "../schemas/app-update.schema.json",
   "schemaVersion": 1,
-  "versionCode": 19,
-  "versionName": "1.4.5",
-  "publishedAt": "2026-09-11T12:40:24Z",
+  "versionCode": 20,
+  "versionName": "1.4.6",
+  "publishedAt": "2026-09-11T13:37:51Z",
   "mandatory": false,
-  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.4.5/ClassSchedule-1.4.5.apk",
-  "sha256": "b8941ed75c391798ce1164e71d6d53b32897a0b0a4bc03dc4411a7ce434d2f8d",
+  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.4.6/ClassSchedule-1.4.6.apk",
+  "sha256": "fc321ac25e2cf7e37c7b48d9898489ba96f5bed8ad3a23a5b6bf11170a59259b",
   "releaseNotes": [
-    "底栏适度增加背景模糊，让后方文字更柔和；以舒展的主题色扩散、过渡色与通透边缘丰富纯色背景下的层次，仅用颜色提示当前页面。",
-    "小组件不透明度、周课表背景透明度滑动条接入液态玻璃，拖动时呈现透光与折射，保留数值反馈、键盘和无障碍操作。",
-    "通用对话框、选择菜单和底部弹层统一采用液态玻璃材质，优化圆角、内容裁切与明暗模式下的阅读体验。",
-    "简化学期卡的边缘高光和投影，降低底色遮盖，调整标题、日期摘要与管理入口的层级和间距。",
-    "今日无课卡改为紧凑的左对齐布局，精简文案并突出查看周课表入口；小屏可滚动，操作按钮随字体增大自然扩展。",
-    "修复周课表背景选择器的容器兼容问题、弹层底部透出页面文字的问题，以及玻璃装饰层干扰键盘焦点的问题。"
+    "去掉底栏点击瞬间出现的实色色块，保留通透玻璃与柔和颜色扩散。",
+    "优化周课表标题、翻周按钮和日期标记，节次与时间层级更清楚。",
+    "提高已结束及非本周课程的文字对比，灰态下仍能清楚阅读课程、地点和教师。",
+    "修复课程名称换行后教师信息可能被裁切的问题，改善七列课表与大字体排版。"
   ],
   "releases": [
+    {
+      "versionCode": 20,
+      "versionName": "1.4.6",
+      "publishedAt": "2026-09-11T13:37:51Z",
+      "notes": [
+        "去掉底栏点击瞬间出现的实色色块，保留通透玻璃与柔和颜色扩散。",
+        "优化周课表标题、翻周按钮和日期标记，节次与时间层级更清楚。",
+        "提高已结束及非本周课程的文字对比，灰态下仍能清楚阅读课程、地点和教师。",
+        "修复课程名称换行后教师信息可能被裁切的问题，改善七列课表与大字体排版。"
+      ]
+    },
     {
       "versionCode": 19,
       "versionName": "1.4.5",
