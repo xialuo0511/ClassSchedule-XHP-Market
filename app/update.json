@@ -1,19 +1,30 @@
 {
   "$schema": "../schemas/app-update.schema.json",
   "schemaVersion": 1,
-  "versionCode": 27,
-  "versionName": "1.4.12",
-  "publishedAt": "2026-10-02T13:38:12Z",
+  "versionCode": 28,
+  "versionName": "1.4.13",
+  "publishedAt": "2026-10-03T01:28:50Z",
   "mandatory": false,
-  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.4.12/ClassSchedule-1.4.12.apk",
-  "sha256": "d0e09b3364d732c98fbfb1f0ef4d1d9b78b2cb0c327e067128d6c85236f1c41c",
+  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.4.13/ClassSchedule-1.4.13.apk",
+  "sha256": "1e7f84c405414b0a52c9d67f6343f53bb808a64b2fdbccfa9a8f4cb924840af5",
   "releaseNotes": [
-    "统一设置项标题字号、分隔线、图标槽与文字间距，节假日调课、小组件和关于页面的App图标保持比例并对齐。",
-    "新增联网节假日方案：展示国务院公告来源、数据源与获取时间，支持离线缓存、逐年失败提示和可编辑的学校日期映射；取消提案不会写入课表。",
-    "补班日默认不映射学校课程，需选择原上课日期并确认学校校历；所选方案先预览实际课程和冲突，再确认应用，保留已有手动调整，重复应用不新增覆盖。",
-    "新增快速互换两天课程，按互换后的实际课次检查冲突，保留原日期的单双周规则与已停课安排；应用可撤销，课表变化后要求重新预览。"
+    "调课预览采用接近周课表的列宽、行高与字号，一屏显示更多日期和节次。",
+    "加入实时调整前后对照、周导航和可展开编辑区，冲突可定位，草稿确认后才应用。",
+    "课程卡片摘要收紧，点击查看完整详情，保留大字体及深浅色支持。",
+    "联网节假日方案入口与来源信息更清晰，继续保留校历确认、取消、手动调整保护及撤销。"
   ],
   "releases": [
+    {
+      "versionCode": 28,
+      "versionName": "1.4.13",
+      "publishedAt": "2026-10-03T01:28:50Z",
+      "notes": [
+        "调课预览采用接近周课表的列宽、行高与字号，一屏显示更多日期和节次。",
+        "加入实时调整前后对照、周导航和可展开编辑区，冲突可定位，草稿确认后才应用。",
+        "课程卡片摘要收紧，点击查看完整详情，保留大字体及深浅色支持。",
+        "联网节假日方案入口与来源信息更清晰，继续保留校历确认、取消、手动调整保护及撤销。"
+      ]
+    },
     {
       "versionCode": 27,
       "versionName": "1.4.12",
