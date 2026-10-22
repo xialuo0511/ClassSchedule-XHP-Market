@@ -1,19 +1,34 @@
 {
   "$schema": "../schemas/app-update.schema.json",
   "schemaVersion": 1,
-  "versionCode": 28,
-  "versionName": "1.4.13",
-  "publishedAt": "2026-10-03T01:28:50Z",
+  "versionCode": 29,
+  "versionName": "1.5.0",
+  "publishedAt": "2026-10-22T13:27:10Z",
   "mandatory": false,
-  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.4.13/ClassSchedule-1.4.13.apk",
-  "sha256": "1e7f84c405414b0a52c9d67f6343f53bb808a64b2fdbccfa9a8f4cb924840af5",
+  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v1.5.0/ClassSchedule-1.5.0.apk",
+  "sha256": "68a8b25daffb97f320a46d3acbc891044cb50e26dc9e7d0e374dc27024145ba2",
   "releaseNotes": [
-    "调课预览采用接近周课表的列宽、行高与字号，一屏显示更多日期和节次。",
-    "加入实时调整前后对照、周导航和可展开编辑区，冲突可定位，草稿确认后才应用。",
-    "课程卡片摘要收紧，点击查看完整详情，保留大字体及深浅色支持。",
-    "联网节假日方案入口与来源信息更清晰，继续保留校历确认、取消、手动调整保护及撤销。"
+    "1.5.0测试版已接入应用内更新，支持从旧版覆盖升级。",
+    "新增“时笺联动”功能插件：用户选定学期后原生只读导出，局域网预览并确认同步到Windows时笺。",
+    "新增前台受控HTTP Bridge、原生配对与确认；默认临时连接，可选Keystore加密保存，支持断开、删除。",
+    "插件支持minAppVersion最低宿主版本：旧包缺省1.0.0，不兼容时阻止安装，市场列表、详情和确认显示支持版本。",
+    "联动页采用紧凑玻璃表面、明确连接状态与课程/课次数汇总，支持只读今日计划摘要。",
+    "插件详情和安装提示使用中文说明“用户选择后只读导出学期课表”“连接用户指定局域网时笺，可选本机加密配对”。"
   ],
   "releases": [
+    {
+      "versionCode": 29,
+      "versionName": "1.5.0",
+      "publishedAt": "2026-10-22T13:27:10Z",
+      "notes": [
+        "1.5.0测试版已接入应用内更新，支持从旧版覆盖升级。",
+        "新增“时笺联动”功能插件：用户选定学期后原生只读导出，局域网预览并确认同步到Windows时笺。",
+        "新增前台受控HTTP Bridge、原生配对与确认；默认临时连接，可选Keystore加密保存，支持断开、删除。",
+        "插件支持minAppVersion最低宿主版本：旧包缺省1.0.0，不兼容时阻止安装，市场列表、详情和确认显示支持版本。",
+        "联动页采用紧凑玻璃表面、明确连接状态与课程/课次数汇总，支持只读今日计划摘要。",
+        "插件详情和安装提示使用中文说明“用户选择后只读导出学期课表”“连接用户指定局域网时笺，可选本机加密配对”。"
+      ]
+    },
     {
       "versionCode": 28,
       "versionName": "1.4.13",
