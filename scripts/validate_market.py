@@ -24,11 +24,16 @@ KNOWN_CAPABILITIES = {
     "web_ui",
     "native_dialog",
     "headless_action",
+    "semester_export",
+    "lan_connect",
 }
 ID_PATTERN = re.compile(r"^[a-z][a-z0-9.\-]{6,126}[a-z0-9]$")
 VERSION_PATTERN = re.compile(r"^\d+\.\d+\.\d+$")
 OFFICIAL_RAW_PREFIX = "https://raw.githubusercontent.com/xialuo0511/ClassSchedule-XHP-Market/main/"
 OFFICIAL_RELEASE_PREFIX = "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/"
+# Immutable pre-1.5.0 packages keep the documented 1.0.0 fallback. New packages must declare a floor.
+LEGACY_PACKAGE_HASHES = {'b16fcf6568c561301c2ffcd061ea2307a549ace06a5c015210692ede0afeb6a3', '8e33be14b0d7ba5fe735fd4d29c15d9e9e93aceb3673f36aee2d5584292ca5af', '680d327670565821b75a8f337eb2ac33cad08ad696ab507ff0b3f79d821c386d', 'f46822026e90aa28ca24215c805f4e88b9e55c13d98933295b1b64f75de9982d', '7a6897eb3bcb9f0320ac9862af81d3d6bd57b0e34948449ebd16f4a8a792b206'}
+
 
 
 class ValidationError(Exception):
@@ -69,6 +74,8 @@ def validate_manifest(manifest: dict, directory_id: str) -> None:
     require(plugin_id == directory_id, f"Plugin directory and id differ: {directory_id} != {plugin_id}")
     require(isinstance(plugin_id, str) and ID_PATTERN.fullmatch(plugin_id) is not None, f"Invalid plugin id: {plugin_id}")
     require(isinstance(version, str) and VERSION_PATTERN.fullmatch(version) is not None, f"Invalid version for {plugin_id}: {version}")
+    if "minAppVersion" in manifest:
+        require(isinstance(manifest["minAppVersion"], str) and re.fullmatch(r"[0-9]{1,6}\.[0-9]{1,6}\.[0-9]{1,6}", manifest["minAppVersion"]) is not None, f"Invalid manifest minAppVersion for {plugin_id}")
     require(protocol in (1, 2, 3), f"Unsupported protocolVersion for {plugin_id}: {protocol}")
     require(isinstance(manifest.get("name"), str) and 1 <= len(manifest["name"]) <= 50, f"Invalid name for {plugin_id}")
     require(isinstance(manifest.get("author"), str) and len(manifest["author"]) <= 80, f"Invalid author for {plugin_id}")
@@ -113,6 +120,18 @@ def validate_package(entry: dict, source_dir: Path) -> None:
     except (OSError, zipfile.BadZipFile, UnicodeDecodeError, json.JSONDecodeError) as exc:
         raise ValidationError(f"Invalid package {entry['packagePath']}: {exc}") from exc
 
+    require("minAppVersion" in embedded_manifest or entry["sha256"] in LEGACY_PACKAGE_HASHES,
+            f"New plugin packages must explicitly declare minAppVersion: {entry['id']}")
+    minimum = embedded_manifest.get("minAppVersion", "1.0.0")
+    require(isinstance(minimum, str) and re.fullmatch(r"[0-9]{1,6}\.[0-9]{1,6}\.[0-9]{1,6}", minimum) is not None, f"Invalid package minAppVersion for {entry['id']}")
+    require(tuple(map(int, entry["minAppVersion"].split('.'))) >= tuple(map(int, minimum.split('.'))),
+            f"Market minimum understates the package minimum for {entry['id']}")
+    if set(embedded_manifest.get("capabilities", [])) & {"semester_export", "lan_connect"}:
+        require(tuple(map(int, minimum.split('.'))) >= (1, 5, 0) and entry["minAppVersionCode"] >= 29,
+                f"Native Connect API requires host 1.5.0: {entry['id']}")
+        require(embedded_manifest.get("activation", {}).get("url", embedded_manifest.get("entryUrl")) == "about:blank"
+                and not set(embedded_manifest["capabilities"]) & {"background_sync", "headless_action"},
+                f"Connect capabilities require a local foreground page: {entry['id']}")
     require(embedded_manifest.get("id") == entry["id"], f"Package id differs for {entry['id']}")
     require(embedded_manifest.get("version") == entry["latestVersion"], f"Package version differs for {entry['id']}")
     require(embedded_manifest.get("protocolVersion") == entry["protocolVersion"], f"Package protocol differs for {entry['id']}")
@@ -131,6 +150,7 @@ def validate() -> None:
         require(isinstance(plugin_id, str) and plugin_id not in seen_ids, f"Duplicate or invalid plugin id: {plugin_id}")
         seen_ids.add(plugin_id)
         require(VERSION_PATTERN.fullmatch(str(entry.get("latestVersion", ""))) is not None, f"Invalid latestVersion for {plugin_id}")
+        require(isinstance(entry.get("minAppVersion"), str) and re.fullmatch(r"[0-9]{1,6}\.[0-9]{1,6}\.[0-9]{1,6}", entry["minAppVersion"]) is not None, f"Invalid market minAppVersion for {plugin_id}")
         require(isinstance(entry.get("minAppVersionCode"), int) and entry["minAppVersionCode"] >= 1, f"Invalid minAppVersionCode for {plugin_id}")
         require(re.fullmatch(r"[a-f0-9]{64}", str(entry.get("sha256", ""))) is not None, f"Invalid SHA-256 for {plugin_id}")
         expected_path = f"packages/{plugin_id}/{entry['latestVersion']}/{Path(entry['packagePath']).name}"

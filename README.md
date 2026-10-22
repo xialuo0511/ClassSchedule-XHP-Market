@@ -4,6 +4,10 @@
 
 > 当前处于测试阶段。插件能够读取其打开网页的内容，请务必只安装自己信任的插件，不要在来源不明的插件中输入账号或密码。
 
+## 1.5.0 测试版
+
+[下载星瀚课程表1.5.0测试版及联动插件](https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/tag/app-v1.5.0)。最低支持版本在插件市场和安装确认中显示；未写字段的历史包按1.0.0处理，新包必须显式声明三段版本。
+
 ## 已收录插件
 
 | 插件 | 版本 | 维护方 | 下载 |
@@ -13,6 +17,8 @@
 | 广州华商学院课表导入（测试版） | 1.0.2 | Xialuo | [下载 XHP](packages/dev.xinghan.huashang/1.0.2/huashang-course-import-1.0.2.xhp) |
 | 嘉应学院课表导入（测试版） | 1.0.0 | Xialuo | [下载 XHP](packages/dev.xinghan.jyu/1.0.0/jyu-course-import-1.0.0.xhp) |
 | 广东海洋大学课表导入（测试版） | 1.0.0 | Xialuo | [下载 XHP](packages/dev.xinghan.gdou/1.0.0/gdou-course-import-1.0.0.xhp) |
+
+| 时笺联动（功能插件·测试版，需App1.5.0） | 1.0.0 | Xialuo | [下载 XHP](packages/dev.xinghan.shijian-connect/1.0.0/shijian-connect-1.0.0.xhp) |
 
 市场索引：[`market/index.json`](market/index.json)
 
@@ -44,7 +50,7 @@ python scripts/validate_market.py
 
 ## 安全边界
 
-- XHP 插件不是 Android 原生代码，不能直接访问星瀚课程表数据库、文件系统或修改 App 源码。
+- XHP 插件不是 Android 原生代码，不能直接访问数据库、任意文件或修改App源码。API4新增前台原生只读导出，必须声明能力并由用户选择学期；局域网联动只访问用户原生配对的时笺接口，令牌不进入JS。
 - 插件打开的网页能够访问宿主提供的 XHP Bridge，因此插件源码和目标网站都属于信任边界。
 - HTTP 仅适用于可信校园内网；条件允许时应优先使用 HTTPS。
 - App 已固定本仓库的 HTTPS 地址并校验 SHA-256 与 XHP 结构，但市场目录尚未加入独立数字签名；当前仍信任 GitHub TLS 和仓库控制权，后续可增加内置公钥与签名索引。

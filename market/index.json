@@ -1,7 +1,7 @@
 {
   "$schema": "../schemas/market.schema.json",
   "schemaVersion": 1,
-  "updatedAt": "2026-09-01T00:00:00Z",
+  "updatedAt": "2026-10-22T12:27:06Z",
   "plugins": [
     {
       "id": "dev.xinghan.qiangzhi",
@@ -10,7 +10,7 @@
       "description": "兼容 HTTP/HTTPS 与统一认证；同一课程可保留多个上课时间及各自地点，不写入无关备注",
       "latestVersion": "1.1.4",
       "protocolVersion": 3,
-      "minAppVersion": "1.1",
+      "minAppVersion": "1.1.0",
       "minAppVersionCode": 2,
       "capabilities": [
         "course_import",
@@ -46,7 +46,7 @@
       "description": "登录广东财经大学教务系统后自动导入课表，并按广州或佛山（三水）校区设置 12 节时间",
       "latestVersion": "2.1.0",
       "protocolVersion": 3,
-      "minAppVersion": "1.1",
+      "minAppVersion": "1.1.0",
       "minAppVersionCode": 2,
       "capabilities": [
         "course_import",
@@ -111,7 +111,7 @@
       "description": "适配广州华商学院强智教务，支持四节连排、13 节课表及广州或肇庆校区时间",
       "latestVersion": "1.0.2",
       "protocolVersion": 3,
-      "minAppVersion": "1.4",
+      "minAppVersion": "1.4.0",
       "minAppVersionCode": 13,
       "capabilities": [
         "course_import",
@@ -164,24 +164,34 @@
       "description": "适配嘉应学院正方教务系统，登录后读取个人课表并在导入前核对学期信息",
       "latestVersion": "1.0.0",
       "protocolVersion": 3,
-      "minAppVersion": "1.1",
+      "minAppVersion": "1.1.0",
       "minAppVersionCode": 2,
-      "capabilities": ["course_import", "web_ui"],
+      "capabilities": [
+        "course_import",
+        "web_ui"
+      ],
       "official": false,
-      "tags": ["教务导入", "嘉应学院", "正方教务", "测试版"],
+      "tags": [
+        "教务导入",
+        "嘉应学院",
+        "正方教务",
+        "测试版"
+      ],
       "packagePath": "packages/dev.xinghan.jyu/1.0.0/jyu-course-import-1.0.0.xhp",
       "downloadUrl": "https://raw.githubusercontent.com/xialuo0511/ClassSchedule-XHP-Market/main/packages/dev.xinghan.jyu/1.0.0/jyu-course-import-1.0.0.xhp",
       "sourceUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.jyu",
       "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/blob/main/plugins/dev.xinghan.jyu/CHANGELOG.md",
       "sha256": "f46822026e90aa28ca24215c805f4e88b9e55c13d98933295b1b64f75de9982d",
-      "releases": [{
-        "version": "1.0.0",
-        "notes": [
-          "新增嘉应学院正方教务个人课表导入",
-          "导入前支持核对学期名称、开学日期、周数和节数",
-          "首版为测试适配，等待真实学生课表验收"
-        ]
-      }],
+      "releases": [
+        {
+          "version": "1.0.0",
+          "notes": [
+            "新增嘉应学院正方教务个人课表导入",
+            "导入前支持核对学期名称、开学日期、周数和节数",
+            "首版为测试适配，等待真实学生课表验收"
+          ]
+        }
+      ],
       "updatedAt": "2026-08-30"
     },
     {
@@ -191,25 +201,73 @@
       "description": "适配广东海洋大学正方教务系统，登录后读取个人课表并在导入前核对学期信息",
       "latestVersion": "1.0.0",
       "protocolVersion": 3,
-      "minAppVersion": "1.1",
+      "minAppVersion": "1.1.0",
       "minAppVersionCode": 2,
-      "capabilities": ["course_import", "web_ui"],
+      "capabilities": [
+        "course_import",
+        "web_ui"
+      ],
       "official": false,
-      "tags": ["教务导入", "广东海洋大学", "正方教务", "测试版"],
+      "tags": [
+        "教务导入",
+        "广东海洋大学",
+        "正方教务",
+        "测试版"
+      ],
       "packagePath": "packages/dev.xinghan.gdou/1.0.0/gdou-course-import-1.0.0.xhp",
       "downloadUrl": "https://raw.githubusercontent.com/xialuo0511/ClassSchedule-XHP-Market/main/packages/dev.xinghan.gdou/1.0.0/gdou-course-import-1.0.0.xhp",
       "sourceUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.gdou",
       "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/blob/main/plugins/dev.xinghan.gdou/CHANGELOG.md",
       "sha256": "7a6897eb3bcb9f0320ac9862af81d3d6bd57b0e34948449ebd16f4a8a792b206",
-      "releases": [{
-        "version": "1.0.0",
-        "notes": [
-          "新增广东海洋大学正方教务个人课表导入",
-          "导入前支持核对学期名称、开学日期、周数和节数",
-          "首版为测试适配，等待真实学生课表验收"
-        ]
-      }],
+      "releases": [
+        {
+          "version": "1.0.0",
+          "notes": [
+            "新增广东海洋大学正方教务个人课表导入",
+            "导入前支持核对学期名称、开学日期、周数和节数",
+            "首版为测试适配，等待真实学生课表验收"
+          ]
+        }
+      ],
       "updatedAt": "2026-08-30"
+    },
+    {
+      "id": "dev.xinghan.shijian-connect",
+      "name": "时笺联动",
+      "author": "Xialuo",
+      "description": "将选定学期课表经局域网预览、确认后同步到Windows时笺，可只读查看今日计划",
+      "latestVersion": "1.0.0",
+      "protocolVersion": 3,
+      "minAppVersion": "1.5.0",
+      "minAppVersionCode": 29,
+      "capabilities": [
+        "web_ui",
+        "semester_export",
+        "lan_connect"
+      ],
+      "official": false,
+      "tags": [
+        "功能插件",
+        "时笺联动",
+        "局域网",
+        "测试版"
+      ],
+      "packagePath": "packages/dev.xinghan.shijian-connect/1.0.0/shijian-connect-1.0.0.xhp",
+      "downloadUrl": "https://raw.githubusercontent.com/xialuo0511/ClassSchedule-XHP-Market/main/packages/dev.xinghan.shijian-connect/1.0.0/shijian-connect-1.0.0.xhp",
+      "sourceUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/tree/main/plugins/dev.xinghan.shijian-connect",
+      "changelogUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/blob/main/plugins/dev.xinghan.shijian-connect/README.md",
+      "sha256": "befb0395ec0aed6d502c4cdf80d6eec0640b62971d60f45588daf66c8f8d9e4d",
+      "updatedAt": "2026-10-22",
+      "releases": [
+        {
+          "version": "1.0.0",
+          "notes": [
+            "新增时笺局域网配对与原生学期只读导出，先预览再确认同步。",
+            "网络失败重试沿用同一提交编号；临时连接退出清除，可选本机加密保存与删除。",
+            "新增只读今日计划摘要与紧凑玻璃界面，最低支持星瀚课程表1.5.0。"
+          ]
+        }
+      ]
     }
   ]
 }

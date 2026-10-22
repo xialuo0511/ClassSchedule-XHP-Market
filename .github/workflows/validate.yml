@@ -23,3 +23,9 @@ jobs:
 
       - name: Validate market metadata and packages
         run: python scripts/validate_market.py
+
+      - name: Check minimum host version enforcement
+        run: python -m unittest discover -s tests -v
+
+      - name: Check Shijian plugin workflow
+        run: node --test plugins/dev.xinghan.shijian-connect/tests/workflow.test.js

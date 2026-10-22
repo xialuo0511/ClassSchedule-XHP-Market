@@ -78,7 +78,8 @@
           "maximum": 3
         },
         "minAppVersion": {
-          "type": "string"
+          "type": "string",
+          "pattern": "^[0-9]{1,6}\\.[0-9]{1,6}\\.[0-9]{1,6}$"
         },
         "minAppVersionCode": {
           "type": "integer",
@@ -95,7 +96,9 @@
               "hooks",
               "web_ui",
               "native_dialog",
-              "headless_action"
+              "headless_action",
+              "semester_export",
+              "lan_connect"
             ]
           }
         },
@@ -131,7 +134,10 @@
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["version", "notes"],
+            "required": [
+              "version",
+              "notes"
+            ],
             "properties": {
               "version": {
                 "type": "string",

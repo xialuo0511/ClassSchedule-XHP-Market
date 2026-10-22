@@ -1,0 +1,12 @@
+{
+  "id": "dev.xinghan.shijian-connect",
+  "name": "时笺联动",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.0",
+  "author": "Xialuo",
+  "description": "将选定学期课表经局域网预览、确认后同步到Windows时笺，可只读查看今日计划",
+  "entryUrl": "about:blank",
+  "protocolVersion": 3,
+  "capabilities": ["web_ui", "semester_export", "lan_connect"],
+  "activation": { "type": "web", "label": "连接时笺" }
+}
