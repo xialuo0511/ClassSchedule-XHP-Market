@@ -4,11 +4,13 @@
 
 > 当前处于测试阶段。插件能够读取其打开网页的内容，请务必只安装自己信任的插件，不要在来源不明的插件中输入账号或密码。
 
-## 1.5.0 测试版
+## 星瀚课程表 2.0.0
 
-[下载星瀚课程表1.5.0测试版及联动插件](https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/tag/app-v1.5.0)。最低支持版本在插件市场和安装确认中显示；未写字段的历史包按1.0.0处理，新包必须显式声明三段版本。
+[下载正式版 APK](https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v2.0.0/ClassSchedule-2.0.0.apk) · [发布说明](https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/tag/app-v2.0.0)
 
-1.5.0测试版现已接入应用内更新，可在“设置 → 检查更新”安装。新增的课表导出与局域网连接权限在1.5.0中显示中文说明；旧版看到英文权限标识时，请先升级App。
+已安装的用户可在「设置 → 检查更新」中升级。
+
+插件的最低支持版本可在市场和安装确认中查看。未声明最低版本的历史包按 1.0.0 处理，新包须显式声明。
 
 ## 已收录插件
 
