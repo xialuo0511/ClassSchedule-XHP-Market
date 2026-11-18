@@ -1,5 +1,15 @@
 # 星瀚课程表更新日志
 
+## 2.1.2（2026-11-18）
+
+- 全量二级页面与模态体系接入「澄序（Clarity）」：AppBottomSheet、AppDialog、ChoiceBottomSheet、ThemePaletteBottomSheet、WeekBackgroundBottomSheet 与全部设置/学业弹窗均统一为浅色 #FFFFFF / 深色 #17181D 哑光卡片、1dp 极细描边及曜石黑/象牙白胶囊主按钮。
+- 统一公共交互控件材质：更新 XhWheelPicker、WheelPickerStyler 与 LiquidGlassSlider 选中胶囊、刻度与滑轨为澄序墨色体系；统一输入栏与分段选择器样式。
+- 重构课程与搜索二级界面：课程编辑页（AddEditCourseFragment）、编辑时间弹窗、课程详情弹窗（CourseInfoDialog）、周课表搜索与明日课程预览全面采用澄序色彩与排版，并修复编辑页底部保存按钮被导航渐隐遮罩半遮挡的问题。
+- 统一插件生态界面与弹窗：覆盖插件市场（PluginMarketBottomSheet）、插件详情与安装确认弹窗、插件接入页顶栏及进度条。
+- 桌面微件全面澄序化：升级「今日课程时间轴」「下一节」「今日状态」三类微件为 22dp 澄序圆角卡片、1dp 描边及紧凑布局，通过 320dp 与 1.3x 大字号边界验证。
+
+内部构建号 33，沿用正式版签名，支持覆盖安装。
+
 ## 2.1.1（2026-11-18）
 
 - 完全接入「澄序（Clarity）」设计体系：统一浅色暖纸白 #F3F1EC 与深色曜石黑 #0E0F12 + 电光青柠 #C6EF5E 视觉语言，移除旧版混搭界面元素。
