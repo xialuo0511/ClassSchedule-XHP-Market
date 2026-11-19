@@ -1,18 +1,28 @@
 {
   "$schema": "../schemas/app-update.schema.json",
   "schemaVersion": 1,
-  "versionCode": 35,
-  "versionName": "2.1.4",
-  "publishedAt": "2026-11-19T02:07:39Z",
+  "versionCode": 36,
+  "versionName": "2.1.5",
+  "publishedAt": "2026-11-19T05:57:10Z",
   "mandatory": false,
-  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v2.1.4/ClassSchedule-2.1.4.apk",
-  "sha256": "0210a30e7129215361d68c886f76ce5acb91d89c9989c9e4096f49804dd47183",
+  "downloadUrl": "https://github.com/xialuo0511/ClassSchedule-XHP-Market/releases/download/app-v2.1.5/ClassSchedule-2.1.5.apk",
+  "sha256": "4a896192c5ec910a4363807d446d6f17a449c0509eaa8ad269c0e90c756d99e4",
   "releaseNotes": [
-    "独立全屏节假日调课工作台：重构拥挤的节假日调课弹窗为独立全屏页面，主视觉聚焦当周课表「调整前/调整后」实时对照与「确认并应用」主按钮；手动编辑区可按需折叠展开，联网方案与规则说明收拢为顶栏次级入口。",
-    "Clarity 统一风格滚动选择器：重塑 XhWheelPicker 为 22dp 圆角轮盘底托配跨列一体化 14dp 选中透镜条、左侧高亮条与上下渐隐遮罩，统一日期、每日课程摘要、课程提醒、事项编辑与单次调课选择器质感，并同步升级单次调课三段式分段胶囊。",
-    "明暗模式图标切换与极速过渡：设置页「明暗模式」改为日/月/跟随系统三态纯图标胶囊开关，移除残留 Compose 宿主开关开销并将切换重建等待缩短至百毫秒级，同时从点击图标圆心展开 320ms 扩散动画并保持深/浅色系统栏图标对比度一致。"
+    "加大版浮动胶囊底栏：在标准手机宽度下将浮岛高度放大至 68dp、页签高 56dp 且未选中最小点击宽增至 90dp，同步放大图标与标签字号并提升底部渐隐与页面滚动避让余量，同时保留窄屏与大字号安全适配。",
+    "周课表色块 5 套样式自由切换（默认「清透马卡龙」）：在设置 → 外观与背景新增「周课表色块」可视预览选择面板，支持「清透马卡龙（默认）」「柔光微描边」「鲜明果冻色」「澄序微胶囊」「澄序左竖条」，兼容自动分配、统一主题色、自定义色及已结束/非本周课程低饱和退让。",
+    "数据库无损升级：Room 架构由 v10 升级至 v11，为 app_settings 新增 weekBlockStyle 字段并默认平滑迁移至 CLASSIC_MACARON。"
   ],
   "releases": [
+    {
+      "versionCode": 36,
+      "versionName": "2.1.5",
+      "publishedAt": "2026-11-19T05:57:10Z",
+      "notes": [
+        "加大版浮动胶囊底栏：在标准手机宽度下将浮岛高度放大至 68dp、页签高 56dp 且未选中最小点击宽增至 90dp，同步放大图标与标签字号并提升底部渐隐与页面滚动避让余量，同时保留窄屏与大字号安全适配。",
+        "周课表色块 5 套样式自由切换（默认「清透马卡龙」）：在设置 → 外观与背景新增「周课表色块」可视预览选择面板，支持「清透马卡龙（默认）」「柔光微描边」「鲜明果冻色」「澄序微胶囊」「澄序左竖条」，兼容自动分配、统一主题色、自定义色及已结束/非本周课程低饱和退让。",
+        "数据库无损升级：Room 架构由 v10 升级至 v11，为 app_settings 新增 weekBlockStyle 字段并默认平滑迁移至 CLASSIC_MACARON。"
+      ]
+    },
     {
       "versionCode": 35,
       "versionName": "2.1.4",
